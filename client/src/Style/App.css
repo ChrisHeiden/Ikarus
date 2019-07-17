@@ -1,0 +1,29 @@
+.title{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: space-between;
+}
+
+.title > h1{
+  font-size: 20vw;
+  padding: 0;
+  margin: 0;
+  margin-top: 5vh;
+  width: 100%;
+}
+
+.title > h1::first-letter{
+  margin-left: -15vw;
+}
+
+h1 > span{
+  margin-right: 15vw;
+}
+
+/**************CANVAS*******************/
+canvas{
+  background: white;
+}
+/***************************************/
