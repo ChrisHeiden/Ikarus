@@ -24,7 +24,7 @@ class InputBox extends Component {
 
     render() {
         return (
-            <div className="InputBox">
+            <div className="inputBox">
                 <p>Amount of Locations</p>
                 <input type="range" min="0" max="100" value={this.state.SliderValue} onChange={this.handleSlider}/>
 
