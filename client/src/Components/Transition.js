@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import '../Style/Transition.css';
 import '../Style/App.css';
-import InputBox from './InputBox';
-import InfoVis from './InfoVIs';
+import '../Style/InfoVis.css';
+import InfoVis from './InfoVis';
 import Button from './Button';
 
 class Transition extends Component {
@@ -25,7 +25,7 @@ class Transition extends Component {
           <Button content="i"/>
           <Button content="<"/>
         </div>
-        <div className="InfoVisInteraction">
+        <div className="infoVisGridPos">
           <InfoVis/>
         </div>
       </div>
