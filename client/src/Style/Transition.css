@@ -1,10 +1,6 @@
 .transition{
     width: 100vw;
     height: 0;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
     background: #000;
     position: absolute;
     bottom: 0px;
@@ -13,39 +9,37 @@
     animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
-  }
-  /* 
-  
-  /* Add a keyframe with a name, also add */
-  @keyframes moveUp {
-    from {
-      height: 0vh;
-    }
-    to {
-      height: 100vh;  
-    }
-  }
+}
 
-  
-.transition{
-    text-align: left;
+@keyframes moveUp {
+  from {
+    height: 0vh;
   }
-  
-  .transition div{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    background: #000;
-    justify-content: space-between;
-  
+  to {
+    height: 100vh;  
   }
-  
-  .transition div h1{
-    color: #ffffff;
-    margin: 3vw;
-  }
-  
-  .transition div button{
-    margin: 3vw;
-  }
+}
 
+.transitionHeader{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  background: #000;
+  justify-content: space-between;
+}
+
+.transitionHeaderGridPos{
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
+  
+.transitionHeader h1{
+  color: #ffffff;
+  margin: 3vw;
+}
+  
+.transition button{
+  margin: 3vw;
+}

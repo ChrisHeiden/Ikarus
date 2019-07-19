@@ -4,11 +4,16 @@ html{
     text-align: center;
 }
   
-  
-
 body{
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: 'Times New Roman', Times, serif;
 }
 
+.generalGrid{
+    display: grid;
+    grid-template-columns: 10% auto  10%;
+    grid-template-rows: 25% auto 25%;
+    width: 100vw;
+    height: 100vh;
+}

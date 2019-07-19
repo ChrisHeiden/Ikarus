@@ -1,29 +1,24 @@
-.title{
+.titleGridPos{
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 2;
+}
+
+.titleFlexLayout{
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: space-between;
 }
 
-.title > h1{
-  font-size: 20vw;
-  padding: 0;
-  margin: 0;
-  margin-top: 5vh;
-  width: 100%;
+.titleFlexLayout > h1{
+  font-size: 15vw;
 }
 
-.title > h1::first-letter{
-  margin-left: -15vw;
+.climate{
+  align-self: flex-start;
 }
 
-h1 > span{
-  margin-right: 15vw;
+.change{
+  align-self: flex-end;
 }
-
-/**************CANVAS*******************/
-canvas{
-  background: white;
-}
-/***************************************/
