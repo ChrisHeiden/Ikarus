@@ -13,7 +13,7 @@ body{
 .generalGrid{
     display: grid;
     grid-template-columns: 10% auto  10%;
-    grid-template-rows: 25% auto 25%;
+    grid-template-rows: 10% auto 10%;
     width: 100vw;
     height: 100vh;
 }

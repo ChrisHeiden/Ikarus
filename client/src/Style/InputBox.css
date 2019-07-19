@@ -1,4 +1,4 @@
-.InputBox{
+.inputBox{
     background: rgb(52, 207, 32);
     display: flex;
     flex-direction: column;
@@ -8,10 +8,8 @@
     width: 20vw;
     z-index: 1;
     background: white;
-    position: absolute;
-    bottom: 0;
 }
 
-.InputBox > p{
+.inputBox > p{
     color: black;
 }

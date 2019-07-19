@@ -9,6 +9,7 @@
     animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
+    z-index: 1;
 }
 
 @keyframes moveUp {
@@ -37,9 +38,8 @@
   
 .transitionHeader h1{
   color: #ffffff;
-  margin: 3vw;
-}
-  
-.transition button{
-  margin: 3vw;
+  font-size: 4vw;
+  margin: 0;
+  padding: 0;
+  align-self: flex-end;
 }
