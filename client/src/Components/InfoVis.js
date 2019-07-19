@@ -37,10 +37,11 @@ class InfoVis extends Component {
   */   
         return (
             <React.Fragment>
-                <Dot xPos={window.innerWidth} yPos={window.innerHeight} radius={this.amountOfTweets} />
             </React.Fragment>
     );
   }
 }
 
 export default InfoVis;
+
+// <Dot xPos={window.innerWidth} yPos={window.innerHeight} radius={this.amountOfTweets} />
