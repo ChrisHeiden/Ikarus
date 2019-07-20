@@ -1,0 +1,8 @@
+.dot{
+    background: #fff;
+    max-width: 200;
+    max-height: 200; 
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+}
