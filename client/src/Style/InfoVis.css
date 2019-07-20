@@ -1,7 +1,10 @@
 .infoVisGridPos
 {
-    grid-column-start: 2;
-    grid-column-end: 2;
-    grid-row-start: 2;
-    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    justify-self: end;
+    height: 100%;
+    width: 100%;
 }
