@@ -1,15 +1,6 @@
-.inputBox{
-    background: rgb(52, 207, 32);
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-
-    height: 20vh;
-    width: 20vw;
-    z-index: 1;
-    background: white;
-}
-
-.inputBox > p{
-    color: black;
+.inputBoxGridPos{
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 3;
+    grid-row-end: 3;
 }
