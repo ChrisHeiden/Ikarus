@@ -1,23 +1,44 @@
 import React, { Component } from 'react';
-import '../Style/Transition.css';
-import '../Style/App.css';
+import '../Style/Dot.css';
 
 class Dot extends Component { 
 
     constructor(props) {
         super(props);
         console.log("Dot:");
-        console.log(this.props.xPos);
-        console.log(this.props.yPos);
+        //console.log(this.props.xPos);
+        //console.log(this.props.yPos);
+        //console.log(this.props.big);
       }
 
     render() {
+      let heightDiv;
+      let widthDiv;
+
+      console.log(this.props.amount);
+
+
+      if(this.props.size === this.props.amount)
+      {
+        heightDiv = this.props.size;
+        widthDiv = this.props.size;
+      }
+
+      const divStyle = {
+        height: heightDiv +'px',
+        width: widthDiv +'px'
+      };
         return (
-            <svg height={this.props.yPos} width={this.props.xPos}>
-                <circle cx={this.props.xPos/2} cy={this.props.yPos/2} r={this.props.radius} fill="white" />
-            </svg>
+           <div /*style={divStyle}*/ className="dot">
+           </div>
     );
   }
 }
 
 export default Dot;
+
+
+
+// <svg height={11} width={11}>
+//  <circle cx={11} cy={11} r={this.props.radius} fill="white" />
+//</svg>
