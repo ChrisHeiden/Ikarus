@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 
   var param = 
   {
-    q: 'climate change since:2011-07-11',
+    q: 'climatechange since:2011-07-11',
     count: 1000
   }   
 
@@ -27,12 +27,6 @@ router.get('/', function(req, res, next) {
 
     res.json(tweet);
   }
-
-
-  //res.json([
-    //{ id: 1, username: "samsepi0l"}, 
-    //{ id: 2, username: "D0loresH4ze"}
-  //]);
 });
 
 module.exports = router;
