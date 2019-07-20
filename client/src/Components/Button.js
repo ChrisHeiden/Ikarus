@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import '../Style/Button.css';
-import InputBox from './InputBox';
 
 class Button extends Component {
   
@@ -11,14 +12,13 @@ class Button extends Component {
             showBox: false
         }; 
 
-        this.showBox = this.showBox.bind(this);
+       this.showBox = this.showBox.bind(this);
     }
-    componentDidMount(){
-        console.log(this.refs.button.getBoundingClientRect());
-        console.log(this.refs.button.getBoundingClientRect().width);
-        this.state.height = this.refs.button.getBoundingClientRect().width;
-        this.forceUpdate();
-    }
+
+    //componentDidMount(){
+    //    this.state.height = this.refs.button.getBoundingClientRect().width;
+    //    this.forceUpdate();
+    //}
 
     showBox(){
         if(this.state.showBox === false)
@@ -28,25 +28,20 @@ class Button extends Component {
         else{
             this.setState({ showBox: false });
         }
+        this.props.click(this.state.showBox);
     }
 
     render() {
-        let showBoxComp;
-
-       
-        if(this.state.showBox === true)
-        {
-            showBoxComp = <InputBox/>;
-        };
         return (
         <React.Fragment>
-            <button style={{height: this.state.height}} ref="button" onClick={this.showBox}>{this.props.content}</button>
-            {showBoxComp}
+            <button onClick={this.showBox}>{this.props.content}</button>
         </React.Fragment>
         );
   }
 }
 
-export default Button;
+Button.propTypes = {
+   click: PropTypes.func
+}
 
-//  
+export default Button;
