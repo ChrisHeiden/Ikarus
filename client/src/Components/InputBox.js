@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../Style/InputBox.css';
+import '../Style/General.css';
 
 class InputBox extends Component {
     
@@ -23,13 +24,18 @@ class InputBox extends Component {
     }
 
     render() {
-        return (
-            <div className="inputBox">
-                <p>Amount of Locations</p>
-                <input type="range" min="0" max="100" value={this.state.SliderValue} onChange={this.handleSlider}/>
 
-                <p>Name of the Locations</p>
-                <input  type="text" value={this.state.textValue} onChange={this.handleText}/>
+
+        return (
+            <div className="box inputBoxGridPos">
+                <h1>Filters</h1>
+                <div className="focusField">
+                    <p>Amount of Locations</p>
+                    <input type="range" min="0" max="100" value={this.state.SliderValue} onChange={this.handleSlider}/>
+
+                    <p>Name of the Locations</p>
+                    <input  type="text" value={this.state.textValue} onChange={this.handleText}/>
+                </div>
             </div>
         );
     }
