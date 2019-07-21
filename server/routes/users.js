@@ -20,10 +20,10 @@ router.get('/', function(req, res, next) {
   function gotData(err, data, response)
   {
     var tweet = data.statuses;
-    for(let i = 0; i < tweet.length; ++i)
-    {
-        console.log(tweet[i].user.location);
-    }
+    //for(let i = 0; i < tweet.length; ++i)
+    //{
+    //    console.log(tweet[i].user.location);
+    //}
 
     res.json(tweet);
   }
