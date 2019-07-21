@@ -60,8 +60,6 @@ class Transition extends Component {
         </div>
       </div>
     );
-
-
   }
 }
 
