@@ -1,44 +1,49 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import '../Style/Dot.css';
 
 class Dot extends Component { 
 
     constructor(props) {
         super(props);
-        console.log("Dot:");
-        //console.log(this.props.xPos);
-        //console.log(this.props.yPos);
-        //console.log(this.props.big);
+        this.state = {
+        }
+        this.calcPoint = this.calcPoint.bind(this);
+    };  
+
+    calcPoint(angle){
+      let point = {
+          x: 1,
+          y: 1
+      };
+      if(this.props.y >= 1){
+        point.y = this.props.y + (this.props.radius*3) * Math.cos(angle);
+        point.x = this.props.x + (this.props.radius*3) * Math.sin(angle);
       }
+      return point;
+  }
+
 
     render() {
-      let heightDiv;
-      let widthDiv;
+      const angle = this.props.angle;
+      console.log(angle);
+      const point = this.calcPoint(angle);
 
-      console.log(this.props.amount);
-
-
-      if(this.props.size === this.props.amount)
-      {
-        heightDiv = this.props.size;
-        widthDiv = this.props.size;
-      }
-
-      const divStyle = {
-        height: heightDiv +'px',
-        width: widthDiv +'px'
+      let styles = {
+        top: point.y,
+        left: point.x,
       };
-        return (
-           <div /*style={divStyle}*/ className="dot">
-           </div>
+
+      return (
+        <div className="dot infoDot" style={styles}>
+        </div>
     );
   }
 }
 
+
+Dot.propTypes = {
+  getMainDot: PropTypes.func
+}
 export default Dot;
-
-
-
-// <svg height={11} width={11}>
-//  <circle cx={11} cy={11} r={this.props.radius} fill="white" />
-//</svg>
