@@ -4,7 +4,14 @@
     grid-column-end: 1;
     grid-row-start: 1;
     grid-row-end: 1;
-    justify-self: end;
     height: 100%;
     width: 100%;
+}
+
+.dotPos{
+    display: flex; /* or inline-flex */
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
 }
