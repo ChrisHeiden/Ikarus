@@ -1,23 +1,44 @@
 .transition{
     width: 100vw;
     height: 0;
-    background: #000;
-    position: absolute;
     bottom: 0px;
+    opacity: 0;
   
-    animation: moveUp 3s;
-    animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
+    /*
+      position: absolute;
+
+    background: #000;
+    */
     z-index: 1;
 }
 
-@keyframes moveUp {
+.test{
+  color: #ffffff;
+}
+
+.fade-appear {
+  opacity: 0.01;
+}
+
+.fade-appear.fade-appear-active {
+  animation: show 5000ms ease-in;
+}
+
+
+.transitionAnimation{
+  animation: show 3s;
+  animation-delay: 5s;
+  animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes show {
   from {
-    height: 0vh;
+    opacity: 0;
   }
   to {
-    height: 100vh;  
+    opacity: 1;
   }
 }
 
@@ -25,7 +46,6 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  background: #000;
   justify-content: space-between;
 }
 

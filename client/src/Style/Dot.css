@@ -5,8 +5,65 @@
     border-radius: 50%;
 }
 .infoDot{
-    background: red;
+    /*background: #fff;*/
+    background: white;
     width: 10px;
     height: 10px;
     position: absolute;
+}
+
+.absoluteDot{
+    background: white;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dot1{
+    align-self: start;
+    justify-self: center;
+}
+
+.dot2{
+    align-self: end;
+    justify-self: end;
+}
+.dot3{
+    align-self: end;
+    justify-self: start;
+}
+
+.middleDot{
+    align-self: center;
+    justify-self: center;
+    background: #fff;
+    opacity: .1;
+}
+.testDot{
+    background: #fff;
+    width: 50px;
+    height: 50px;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    border-radius: 50%;
+}
+
+.testDot > p{
+    color: #fff;
+    position: relative;
+    top: 20%;
+    left: 100%;
+}
+
+
+.gridVis{
+    height: 100%;
+    width: 100%;
+    display: grid; 
+    grid-template-columns: 100%;
+    grid-template-rows:100%;
 }

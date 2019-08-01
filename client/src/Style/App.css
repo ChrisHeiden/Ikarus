@@ -13,7 +13,34 @@
 
 .titleFlexLayout > h1{
   font-size: 15vw;
+  background: url("../Images/Water.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+
+
+  animation: backgroundMove 5s;
+  animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
+
+
+@keyframes backgroundMove {
+
+  from {
+    background-position-x: -400%;
+    background-position-y: -400%;  
+  }
+  to {
+    background-position-x: 400%;
+    background-position-y: 400%;  
+  }
+}
+
 
 .climate{
   align-self: flex-start;
@@ -21,4 +48,10 @@
 
 .change{
   align-self: flex-end;
+}
+
+
+svg{
+  overflow: hidden;
+  z-index: -1;
 }
