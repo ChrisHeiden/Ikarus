@@ -4,6 +4,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var usersRouter = require('./routes/users');
+var tumblrRouter = require('./routes/tumblr');
+var instaRouter = require('./routes/instagram');
 
 var app = express();
 
@@ -18,6 +20,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', usersRouter);
+app.use('/tumblr', tumblrRouter);
+app.use('/insta', instaRouter);
 
 
 module.exports = app;
