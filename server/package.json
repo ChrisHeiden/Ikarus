@@ -12,6 +12,11 @@
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
+    "react-addons-css-transition-group": "^15.6.2",
+    "react-addons-transition-group": "^15.6.2",
+    "react-transition-group": "^4.2.1",
+    "tumblr": "^0.4.1",
+    "tumblr.js": "^2.0.2",
     "twit": "^2.2.11",
     "twitt": "^1.0.0"
   }
