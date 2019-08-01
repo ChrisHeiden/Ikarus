@@ -3,9 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "install-peers": "^1.0.3",
     "react": "^16.8.6",
+    "react-addons-css-transition-group": "^15.6.2",
+    "react-addons-transition-group": "^15.6.2",
+    "react-animation": "^1.2.0",
     "react-dom": "^16.8.6",
-    "react-scripts": "0.9.5"
+    "react-scripts": "0.9.5",
+    "react-transition-group": "^4.2.1"
   },
   "devDependencies": {},
   "scripts": {
