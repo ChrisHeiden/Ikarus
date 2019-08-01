@@ -34,7 +34,9 @@ class Button extends Component {
     render() {
         return (
         <React.Fragment>
-            <button onClick={this.showBox}>{this.props.content}</button>
+            <button onClick={this.showBox} style={this.props.styleButton}>
+                <h1>{this.props.content}</h1>
+            </button>
         </React.Fragment>
         );
   }

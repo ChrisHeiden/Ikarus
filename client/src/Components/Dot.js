@@ -2,41 +2,71 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import '../Style/Dot.css';
+import '../Style/App.css';
 
 class Dot extends Component { 
 
     constructor(props) {
         super(props);
         this.state = {
+          clickState: false,
+          width: 10,
+          height: 10,
         }
+        this.position = "";
+        this.click = this.click.bind(this);
         this.calcPoint = this.calcPoint.bind(this);
     };  
 
-    calcPoint(angle){
+    calcPoint(angle, radius, x, y){
       let point = {
-          x: 1,
-          y: 1
+          x: 0,
+          y: 0
       };
-      if(this.props.y >= 1){
-        point.y = this.props.y + (this.props.radius*3) * Math.cos(angle);
-        point.x = this.props.x + (this.props.radius*3) * Math.sin(angle);
-      }
+
+      let shift = radius/2;
+      point.y = (y + shift) + (radius * Math.sin(angle));
+      point.x = (x + shift) + (radius * Math.cos(angle));
+      
       return point;
-  }
+    }
+
+    click(){
+      console.log("test")
+      if(this.state.clickState === false)
+      {
+        this.setState({clickState: true});
+        this.setState({height: 100});
+        this.setState({width: 100});
+      }else{
+        this.setState({clickState: false});
+        this.setState({height: 10});
+        this.setState({width: 10});
+      }
+    }
 
 
     render() {
-      const angle = this.props.angle;
-      console.log(angle);
-      const point = this.calcPoint(angle);
-
+      this.position = this.props.location
+      const point = this.calcPoint(this.props.angle, this.props.radius, this.props.x, this.props.y);
+      console.log(point);
       let styles = {
         top: point.y,
         left: point.x,
+        width: this.state.width + "px",
+        height: this.state.height + "px",
       };
+      let loca;
+      if(this.state.clickState === true)
+      {
+        loca = <p style={styles}>{this.position}</p>
+      }
 
       return (
-        <div className="dot infoDot" style={styles}>
+        <div>
+          <div onClick={this.click} className="absoluteDot" style={styles}>
+            {loca}
+          </div>
         </div>
     );
   }

@@ -18,3 +18,16 @@ class App extends Component {
 }
 
 export default App;
+/*
+
+
+   <CSSTransition
+               in={true}
+               classNames="fade"
+               appear={true}
+               timeout={5000}>
+                <div>
+                    <h1>Step One</h1>
+                </div>
+            </CSSTransition>
+*/

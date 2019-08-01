@@ -24,15 +24,14 @@ class InputBox extends Component {
     }
 
     render() {
-
-
+        console.log(this.props.amountTw)
+        console.log(this.state.sliderValue)
         return (
             <div className="box inputBoxGridPos">
                 <h1>Filters</h1>
                 <div className="focusField">
                     <p>Amount of Locations</p>
-                    <input type="range" min="0" max="100" value={this.state.SliderValue} onChange={this.handleSlider}/>
-
+                    <input type="range" min="this.props.amountTw" max={this.props.amountTw} value={this.state.SliderValue} onChange={this.handleSlider}/>
                     <p>Name of the Locations</p>
                     <input  type="text" value={this.state.textValue} onChange={this.handleText}/>
                 </div>
