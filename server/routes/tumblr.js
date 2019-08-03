@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
 
 
     // Make the request
-    client.taggedPosts('climatechange', { limit: 3 }, gotData);
+    client.taggedPosts('climatechange', { limit: 100 }, gotData);
 
 
     function gotData(err, data, response)
