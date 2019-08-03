@@ -103,9 +103,6 @@ class Dot extends Component {
 
 
     render() {
-
-
-
       const point = this.calPosition(this.props.middleX, 
                                    this.props.middleY,
                                    this.props.plattformPosX,
@@ -123,7 +120,7 @@ class Dot extends Component {
         left: point.x,
         width: this.state.width + "px",
         height: this.state.height + "px",
-        //opacity: (point.procent / 100)
+        opacity: (point.procent / 100)
       };
 
 
