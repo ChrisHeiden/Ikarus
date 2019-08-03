@@ -17,6 +17,36 @@ class Dot extends Component {
         this.calPosition = this.calPosition.bind(this);
     };  
 
+    calcXPos(procent, middleX, plattformPosX, distance){
+      let x = 0;
+      if(middleX == plattformPosX)
+      {
+        x = plattformPosX + (this.state.width*2);
+      }
+      else
+      {
+        const startX = plattformPosX + (this.state.width*2);
+        x = (distance / procent) + startX;
+      }
+
+      return x;
+    }
+
+    calcYPos(procent, middleY, plattformPosY, distance){
+      let y = 0;
+      if(middleY == plattformPosY)
+      {
+        y = plattformPosY + (this.state.height*2);
+      }
+      else
+      {
+        const startY = plattformPosY + (this.state.height*2);
+        y = (distance / procent) + startY;
+      }
+
+      return y;
+    }
+
     calPosition(middleX, middleY, plattformPosX, plattformPosY, distance, oldest, newest, date, diameter){
       let point = {
           x: 0,
@@ -27,28 +57,23 @@ class Dot extends Component {
       var actualPost = new Date(date);
       var oldestPost = new Date(oldest);
       var newestPost = new Date(newest);
-      //console.log("actualPost: " + actualPost)
-      //console.log("oldestPost: " + oldestPost)
-      //console.log("newestPost: " + newestPost)
-
-      //console.log("actualPost.getTime(): " + actualPost.getTime())
-      //console.log("oldestPost.getTime(): " + oldestPost.getTime())
-      //console.log("newestPost.getTime(): " + newestPost.getTime())
-      //console.log(actualPost.getTime() - oldestPost.getTime())
-      //console.log(newestPost.getTime() - oldestPost.getTime())
 
       // TODO: actualPost.getTime() - oldestPost.getTime() can be 0
       const procent = ((actualPost.getTime() - oldestPost.getTime()) * 100) / (newestPost.getTime() - oldestPost.getTime());
-      const startY = plattformPosY + (this.state.width*2);
-      const posY = (distance / procent) + startY;
-      
+      // TODO: actualPost.getTime() - oldestPost.getTime() can be 0     
       // TODO: posY start in the middle
+      const y = this.calcYPos(procent, middleY, plattformPosY, distance);
+      const x = this.calcXPos(procent, middleX, plattformPosX, distance);
 
-      point.x = plattformPosX + (this.state.width*2);
-      point.y = posY;
-      if(posY == Infinity)
+      point.x = x;
+      point.y = y;
+      if(y === Infinity)
       {
-        point.y = startY;
+        point.y = plattformPosY;
+      }
+      if(x === Infinity)
+      {
+        point.x = plattformPosX;
       }
       point.procent = procent;
       //console.log(procent)
@@ -124,3 +149,14 @@ Dot.propTypes = {
   getMainDot: PropTypes.func
 }
 export default Dot;
+
+
+      //console.log("actualPost: " + actualPost)
+      //console.log("oldestPost: " + oldestPost)
+      //console.log("newestPost: " + newestPost)
+
+      //console.log("actualPost.getTime(): " + actualPost.getTime())
+      //console.log("oldestPost.getTime(): " + oldestPost.getTime())
+      //console.log("newestPost.getTime(): " + newestPost.getTime())
+      //console.log(actualPost.getTime() - oldestPost.getTime())
+      //console.log(newestPost.getTime() - oldestPost.getTime())
