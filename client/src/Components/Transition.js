@@ -14,7 +14,7 @@ class Transition extends Component {
     this.state ={
       showInfoBox: false,
       showInputField: false,
-      amountTweets: 0,
+      //amountTweets: 0,
       buttonInfoLabel: "i",
       buttonInputLabel: "<",
     }; 
@@ -22,15 +22,15 @@ class Transition extends Component {
     this.showInputBoxFunc = this.showInputBoxFunc.bind(this);
     this.amountTweets = 0;
   }
-
+/*
   componentDidMount() {
-    fetch('/users')
+    fetch('/twitter')
       .then(res => res.json())
       .then(tweet => {
         this.amountTweets= tweet.length;  
       });
   };
-
+*/
   showInfoBoxFunc(info){
     this.setState({ showInfoBox: info });
   }
@@ -83,7 +83,7 @@ class Transition extends Component {
           <Button content={this.state.buttonInputLabel} click={this.showInputBoxFunc} styleButton={inputStyle}/>
         </div>
         <div className="mainFocusGridPos mainFocus">
-          <InfoVis getTweetsNumber={this.getAmountOfTweets}/>
+          <InfoVis/>
           <div className="showBoxes">
             {showInfoBox}
             {showInputField}

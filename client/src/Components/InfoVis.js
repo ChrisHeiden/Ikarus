@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import '../Style/Transition.css';
 import '../Style/App.css';
 import '../Style/Dot.css';
-import PlattformDot from './PlattformDot'
-import PropTypes from 'prop-types';
+import MiddleDot from './MiddleDot'
 
 import Dot from './Dot';
 
@@ -24,9 +23,25 @@ class InfoVis extends Component {
             amountOfInstas: 1,
             
             xPos: 0,
-            xPos: 0,
+            yPos: 0,
+
+            tumblrXPos: 0,
+            tumblrYPos: 0,
+
+            twitterXPos: 0,
+            twitterYPos: 0,
+
+            instagramXPos: 0,
+            instagramYPos: 0,
+
             radius: 0,
         };
+
+
+        this.tumblrDots;
+        this.twitterDots;
+        this.instagramDots;
+
         this.circleRadius = 360;
         this.calcDots = this.calcDots.bind(this);
         this.calcTwitterDots = this.calcTwitterDots.bind(this);
@@ -35,41 +50,6 @@ class InfoVis extends Component {
     } 
     
 
-    componentDidMount() {
-        fetch('/users')
-            .then(res => res.json())
-            .then(tweet => {
-                this.setState({amountOfTweets: tweet.length});            
-                this.setState({tweets: tweet});          
-                this.setState({gotInformationTwitter: true});          
-            });
-
-            fetch('/tumblr')
-            .then(res => res.json())
-            .then(tumb => {
-                this.setState({amountOfTumbs: tumb.length});            
-                this.setState({tumbs: tumb});          
-                this.setState({gotInformationTumblr: true});          
-            });
-
-            /*
-            fetch('/insta')
-            .then(res => res.json())
-            .then(tumb => {
-                this.setState({amountOfTumbs: tumb.length});            
-                this.setState({tumbs: tumb});          
-                this.setState({gotInformationTumblr: true});          
-            });*/
-        this.forceUpdate();
-    };
-    
-    
-    refCallback = element => {
-        const pos = element.getBoundingClientRect();
-        this.setState({radius: this.state.amountOfTweets});            
-        this.setState({xPos: pos.x});            
-        this.setState({yPos: pos.y});          
-    };
 
     calcInstagramDots(){
         const instas = this.state.instas;
@@ -82,14 +62,19 @@ class InfoVis extends Component {
         return listItems
     }
 
-    
     calcTumblrDots(){
         const tumbs = this.state.tumbs;
         let step = this.circleRadius /this.state.amountOfTumbs;
 
 
         let listItems = tumbs.map((tumb, index) =>  
-            <Dot key={index} location={tumbs[index].location} angle={index} y={100} x={300} radius={this.state.radius}></Dot>
+            <Dot key={index} 
+                 middleX={this.state.xPos} 
+                 middleY={this.state.yPos} 
+                 date={tumbs[index].location} 
+                 location={tumbs[index].location} 
+                 y={this.state.tumblrYPos} 
+                 x={this.state.tumblrXPos}></Dot>
         )
         return listItems
     }
@@ -117,39 +102,25 @@ class InfoVis extends Component {
     }
 
     render() {
-        if(this.state.gotInformationTwitter === false)
-        {
-            return(<React.Fragment/>);
-        }
-        else if(this.state.gotInformationTwitter === true){    
-            let heightDiv = this.state.amountOfTweets;
-            let widthDiv = this.state.amountOfTweets;
-
-            let styles = {
-            };
-
-
-            return (
-                <div className="infoVisGridPos dotPos gridVis">
-                    <PlattformDot alignSelf="start" justifySelf="center" opacity="1" title="Tumblr" />
-                    <div ref={this.refCallback} style={styles}>
-                        {this.calcTumblrDots()}
-                    </div>
-                    <PlattformDot alignSelf="end" justifySelf="end" opacity="1" title="Twitter" />
-                    <div ref={this.refCallback} style={styles}>
-                        {this.calcTwitterDots()}
-                    </div>
-                    <PlattformDot alignSelf="end" justifySelf="start" opacity="1" title="Instagram" />
-                    <PlattformDot alignSelf="center" justifySelf="center" opacity=".1" title="" />
-                </div>
-            );
-        }
+        return (
+            <div className="infoVisGridPos dotPos gridVis">
+                <MiddleDot alignSelf="center" justifySelf="center" opacity=".1"/>   
+            </div>
+        );
     }
 }
 
 
 export default InfoVis;
-/* <PlattformDot alignSelf="end" justifySelf="end" opacity="1" title="Twitter" />
+/*
+            //this.state.gotInformationInstagram === true){    
+
+ <div name="Twitter" ref={this.refCallback}>
+                        {this.calcTwitterDots()}
+                    </div>
+
+
+<PlattformDot alignSelf="end" justifySelf="end" opacity="1" title="Twitter" />
                     <div ref={this.refCallback} className="dot" style={styles}>
                     </div>
                     {this.calcDots()}

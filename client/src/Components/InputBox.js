@@ -24,8 +24,8 @@ class InputBox extends Component {
     }
 
     render() {
-        console.log(this.props.amountTw)
-        console.log(this.state.sliderValue)
+        //console.log(this.props.amountTw)
+        //console.log(this.state.sliderValue)
         return (
             <div className="box inputBoxGridPos">
                 <h1>Filters</h1>
