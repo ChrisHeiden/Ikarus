@@ -21,6 +21,11 @@
     cursor: pointer;
 }
 
+.location{
+    color: #fff;
+    position: absolute;
+}
+
 .dot1{
     align-self: start;
     justify-self: center;

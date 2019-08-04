@@ -33,11 +33,13 @@ class PlattformDot extends Component {
                     let date = [];
                     let location = [];
                     let size = tumb.length;
+                    location.push("******************************************");
+                    location.push("*****************Tumblr***************");
                     for(let x = 0; x <size; ++x)
                     {
+                        console.log(tumb[x]);
                         location.push(tumb[x].location);
-                        date.push(tumb[x].date);
-                        //console.log(tumb[x].date);
+                        date.push(new Date(tumb[x].date));
                     }
                     this.setState({
                         dates: date,
@@ -45,7 +47,7 @@ class PlattformDot extends Component {
                         gotInformation: true
                     });          
                 });
-
+                console.log("");
         }
         else if(this.props.title === 'Twitter')
         {
@@ -55,9 +57,13 @@ class PlattformDot extends Component {
                     let date = [];
                     let location = [];
                     let size = tweet.length;
+                    location.push("******************************************");
+                    location.push("*****************Twitter***************");
+
                     for(let x = 0; x <size; ++x)
                     {
-                        date.push(tweet[x].user.created_at);
+                        console.log(tweet[x]);
+                        date.push(new Date(tweet[x].user.created_at));
                         location.push(tweet[x].user.location);
                     }
                     this.setState({
@@ -143,17 +149,17 @@ class PlattformDot extends Component {
     }
 
     calcDistance(){
-        let x = Math.pow((this.props.middleX - this.state.x), 2);
-        let y = Math.pow((this.props.middleY - this.state.y), 2);
-        let dist = Math.sqrt(x + y);
-        //console.log(dist);
-        return dist;
+        let distance = {x: 0, y:0}
+        let x = this.props.middleX - this.state.x
+        let y = this.props.middleY - this.state.y
+        distance.x = x;
+        distance.y = y;
+        
+        return distance;
     }
 
     calcDots(distance, oldestPost, newestPost){
         const dates = this.state.dates;
-        let step = this.circleRadius /this.state.amountOfTumbs;
-
 
         let listItems = dates.map((date, index) =>  
             <Dot key={index} 
@@ -168,7 +174,6 @@ class PlattformDot extends Component {
                  oldest={oldestPost} 
                  newest={newestPost} 
                  diameter={this.state.diameter} 
-
                 ></Dot>
         )
         return listItems
@@ -184,11 +189,10 @@ class PlattformDot extends Component {
         }
         else
         {
-            const distance = this.calcDistance();
+            let distance = this.calcDistance();
             const oldest = this.findOldestPost();
             const newest = this.findNewestPost();
-           
-           
+          
             let click;
 
             

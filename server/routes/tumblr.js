@@ -27,10 +27,10 @@ router.get('/', function(req, res, next) {
     function gotData(err, data, response)
     {
         tumblrRes = data;
-        //for(let i = 0; i < tumblrRes.length; ++i)
-        //{
-        //console.log(tumblrRes[i].date);  
-        //}
+        for(let i = 0; i < tumblrRes.length; ++i)
+        {
+        console.log(tumblrRes[i]);  
+        }
         res.json(tumblrRes);
     }
 });

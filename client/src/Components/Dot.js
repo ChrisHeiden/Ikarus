@@ -10,38 +10,44 @@ class Dot extends Component {
         super(props);
         this.state = {
           clickState: false,
+          hover: false,
           width: 10,
           height: 10,
         }
         this.click = this.click.bind(this);
         this.calPosition = this.calPosition.bind(this);
+        this.hoverOff = this.hoverOff.bind(this);
+        this.hoverOver = this.hoverOver.bind(this);
     };  
 
-    calcXPos(procent, middleX, plattformPosX, distance){
+    calcXPos(procent, middleX, plattformPosX, distance, diameter){
       let x = 0;
+      
       if(middleX == plattformPosX)
       {
-        x = plattformPosX + (this.state.width*2);
+        const startX = middleX + (diameter/2) - (this.state.width/2);
+        x = ((-procent /100)* distance.x) + startX;      
       }
       else
       {
-        const startX = plattformPosX + (this.state.width*2);
-        x = (distance / procent) + startX;
+        const startX = middleX + (diameter/2) - (this.state.width/2);
+        //console.log(startX);
+        x = ((-procent /100) * distance.x) + startX;  
       }
-
       return x;
     }
 
-    calcYPos(procent, middleY, plattformPosY, distance){
+    calcYPos(procent, middleY, plattformPosY, distance, diameter){
       let y = 0;
       if(middleY == plattformPosY)
       {
-        y = plattformPosY + (this.state.height*2);
+        const startY = middleY + (diameter/2) - (this.state.width/2);
+        y = ((-procent /100)* distance.y) + startY;       
       }
       else
       {
-        const startY = plattformPosY + (this.state.height*2);
-        y = (distance / procent) + startY;
+        const startY = middleY + (diameter/2) - (this.state.width/2);
+        y = ((-procent /100)* distance.y) + startY;  
       }
 
       return y;
@@ -58,25 +64,34 @@ class Dot extends Component {
       var oldestPost = new Date(oldest);
       var newestPost = new Date(newest);
 
-      // TODO: actualPost.getTime() - oldestPost.getTime() can be 0
-      const procent = ((actualPost.getTime() - oldestPost.getTime()) * 100) / (newestPost.getTime() - oldestPost.getTime());
-      // TODO: actualPost.getTime() - oldestPost.getTime() can be 0     
-      // TODO: posY start in the middle
-      const y = this.calcYPos(procent, middleY, plattformPosY, distance);
-      const x = this.calcXPos(procent, middleX, plattformPosX, distance);
+    
 
+
+      // TODO: actualPost.getTime() - oldestPost.getTime() can be 0
+      let procent = ((actualPost.getTime() - oldestPost.getTime()) * 100) / (newestPost.getTime() - oldestPost.getTime());
+      if(procent === Infinity)
+      {
+        procent = 0;
+      }
+      // TODO: 0 - 100
+
+      //console.log("procent:" + procent)
+      if(procent > 100)
+      {
+        alert(procent);
+      }
+
+    
+      // TODO: posY start in the middle
+      const y = this.calcYPos(procent, middleY, plattformPosY, distance, diameter);
+      const x = this.calcXPos(procent, middleX, plattformPosX, distance, diameter);
+    
       point.x = x;
       point.y = y;
-      if(y === Infinity)
-      {
-        point.y = plattformPosY;
-      }
-      if(x === Infinity)
-      {
-        point.x = plattformPosX;
-      }
+     
       point.procent = procent;
       //console.log(procent)
+      //console.log("")
 
       return point;
     }
@@ -86,58 +101,94 @@ class Dot extends Component {
       {
         this.setState({
           clickState: true, 
-          height: 20,
-          width: 20,
         });
       }
       else{
         this.setState({
           clickState: false,
-          height: 10,
-          width: 10,
         });
       }
     }
 
+    hoverOver(){
+      this.setState({
+        hover: true, 
+      });
+    }
+
+    hoverOff(){
+      this.setState({
+        hover: false,  
+      });     
+    }
+
+   
    
 
 
     render() {
-      const point = this.calPosition(this.props.middleX, 
-                                   this.props.middleY,
-                                   this.props.plattformPosX,
-                                   this.props.plattformPosY,
-                                   this.props.distance,
-                                   this.props.oldest,                       
-                                   this.props.newest,
-                                   this.props.date,
-                                   this.props.diameter)
-                                   
-      //console.log(point)
-
-      let styles = {
-        top: point.y,
-        left: point.x,
-        width: this.state.width + "px",
-        height: this.state.height + "px",
-        opacity: (point.procent / 100)
-      };
-
-
-      let loca;
-
-      if(this.state.clickState === true)
+      if(this.props.plattformPosX == 0 || this.props.plattformPosY == 0 )
       {
-        loca = <p style={styles}>{this.position}</p>
+        return(
+          <React.Fragment></React.Fragment>
+        )
       }
+      else
+      {
 
-      return (
-        <div>
-          <div onClick={this.click} className="absoluteDot" style={styles}>
+
+        const point = this.calPosition(this.props.middleX, 
+                                      this.props.middleY,
+                                      this.props.plattformPosX,
+                                      this.props.plattformPosY,
+                                      this.props.distance,
+                                      this.props.oldest,                       
+                                      this.props.newest,
+                                      this.props.date,
+                                      this.props.diameter)
+                                    
+        //console.log(point)
+
+        let stylesDot = {
+          top: point.y,
+          left: point.x,
+          width: this.state.width + "px",
+          height: this.state.height + "px",
+          opacity: (point.procent / 100)
+        };
+
+        let stylesText = {
+          top: point.y - 15,
+          left: point.x + 25,
+        };
+
+
+        let loca;
+
+        if(this.state.clickState === true)
+        {
+          loca = <p style={stylesText} className="location">{this.props.location}</p>
+        }
+
+        if(this.state.hover === true)
+        {
+          loca = <p style={stylesText} className="location">{this.props.location}</p>
+        }
+        //console.log(this.props.location);
+
+        return (
+          <div>
+            <div 
+                //onClick={this.click}  
+                onMouseEnter={this.hoverOver}
+                onMouseLeave={this.hoverOff} 
+                className="absoluteDot" 
+                style={stylesDot}>
+            </div>
             {loca}
           </div>
-        </div>
-    );
+      );
+    }
   }
 }
 
@@ -146,14 +197,3 @@ Dot.propTypes = {
   getMainDot: PropTypes.func
 }
 export default Dot;
-
-
-      //console.log("actualPost: " + actualPost)
-      //console.log("oldestPost: " + oldestPost)
-      //console.log("newestPost: " + newestPost)
-
-      //console.log("actualPost.getTime(): " + actualPost.getTime())
-      //console.log("oldestPost.getTime(): " + oldestPost.getTime())
-      //console.log("newestPost.getTime(): " + newestPost.getTime())
-      //console.log(actualPost.getTime() - oldestPost.getTime())
-      //console.log(newestPost.getTime() - oldestPost.getTime())

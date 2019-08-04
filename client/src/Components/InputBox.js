@@ -9,7 +9,7 @@ class InputBox extends Component {
         this.state = {
             textValue: "",            
         };
-
+    
         this.handleText = this.handleText.bind(this);
     } 
 

@@ -10,6 +10,7 @@ class MiddleDot extends Component {
         this.state = {
            x: 0,
            y: 0,
+           diameter: 50,
         };
     }
 
@@ -24,8 +25,8 @@ class MiddleDot extends Component {
             alignSelf: this.props.alignSelf, 
             justifySelf: this.props.justifySelf, 
             opacity: this.props.opacity,
-            width: 50 + "px",
-            height: 50 + "px",
+            width: this.state.diameter + "px",
+            height: this.state.diameter + "px",
         };
 
 
@@ -34,7 +35,6 @@ class MiddleDot extends Component {
                 <div ref={this.refCallback} className="testDot" style={styles}></div>
                 <PlattformDot alignSelf="start" justifySelf="center" opacity="1" title="Tumblr" middleX={this.state.x} middleY={this.state.y}/>
                 <PlattformDot alignSelf="end" justifySelf="end" opacity="1" title="Twitter" middleX={this.state.x} middleY={this.state.y}/>
-
             </div>
         ); 
     }
@@ -43,6 +43,8 @@ class MiddleDot extends Component {
 export default MiddleDot;
 
 /*
+
+                <PlattformDot alignSelf="end" justifySelf="end" opacity="1" title="Twitter" middleX={this.state.x} middleY={this.state.y}/>
 
                 <PlattformDot alignSelf="end" justifySelf="start" opacity="1" title="Instagram" middleX={this.state.x} middleY={this.state.y}/>            
 
