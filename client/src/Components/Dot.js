@@ -66,32 +66,24 @@ class Dot extends Component {
 
     
 
-
-      // TODO: actualPost.getTime() - oldestPost.getTime() can be 0
       let procent = ((actualPost.getTime() - oldestPost.getTime()) * 100) / (newestPost.getTime() - oldestPost.getTime());
       if(procent === Infinity)
       {
         procent = 0;
       }
-      // TODO: 0 - 100
 
-      //console.log("procent:" + procent)
       if(procent > 100)
       {
         alert(procent);
       }
 
-    
-      // TODO: posY start in the middle
-      const y = this.calcYPos(procent, middleY, plattformPosY, distance, diameter);
+          const y = this.calcYPos(procent, middleY, plattformPosY, distance, diameter);
       const x = this.calcXPos(procent, middleX, plattformPosX, distance, diameter);
     
       point.x = x;
       point.y = y;
      
       point.procent = procent;
-      //console.log(procent)
-      //console.log("")
 
       return point;
     }
@@ -122,9 +114,6 @@ class Dot extends Component {
       });     
     }
 
-   
-   
-
 
     render() {
       if(this.props.plattformPosX == 0 || this.props.plattformPosY == 0 )
@@ -136,7 +125,7 @@ class Dot extends Component {
       else
       {
 
-
+      
         const point = this.calPosition(this.props.middleX, 
                                       this.props.middleY,
                                       this.props.plattformPosX,
@@ -147,7 +136,7 @@ class Dot extends Component {
                                       this.props.date,
                                       this.props.diameter)
                                     
-        //console.log(point)
+        //console.log(point)       
 
         let stylesDot = {
           top: point.y,
@@ -174,8 +163,10 @@ class Dot extends Component {
         {
           loca = <p style={stylesText} className="location">{this.props.location}</p>
         }
-        //console.log(this.props.location);
+        //("Plattform: " + this.props.location);
+        //console.log("Plattform: " + this.props.searchLocation);
 
+        
         return (
           <div>
             <div 
@@ -197,3 +188,16 @@ Dot.propTypes = {
   getMainDot: PropTypes.func
 }
 export default Dot;
+
+
+
+
+/*
+
+ console.log(this.props.searchLocation);
+                console.log(this.state.locations[index]);
+                if(this.state.locations[index].search("UK") != -1){
+                    console.log("Funzt");
+                }
+                console.log("Plattform: " + this.props.searchLocation)
+*/

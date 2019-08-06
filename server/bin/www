@@ -8,6 +8,8 @@ var app = require('../app');
 var debug = require('debug')('server:server');
 var http = require('http');
 
+var Data =  require('../routes/data');
+var data = new Data();
 /**
  * Get port from environment and store in Express.
  */
@@ -20,6 +22,23 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+
+
+/*
+  create a socket to comunicate between the server and client
+*/
+var socket = require('socket.io')
+var io = socket(server);
+io.sockets.on('connection', newConnection);
+
+function newConnection(socket)
+{
+  console.log(socket.id);
+  socket.on('sendTag', function(tag){
+    data.setTag(tag);
+    socket.emit('gotInfo', true);
+  });
+}
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -45,7 +64,6 @@ function normalizePort(val) {
     // port number
     return port;
   }
-
   return false;
 }
 
@@ -88,3 +106,5 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+

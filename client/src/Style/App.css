@@ -6,28 +6,18 @@
 }
 
 .titleFlexLayout{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 30% 30% 30%;
+  width: 100%;
+  height: 100%;
+  justify-items: start;
 }
 
 .titleFlexLayout > h1{
-  font-size: 15vw;
-  background: url("../Images/Water.svg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 900;
-
-
-  animation: backgroundMove 5s;
-  animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
+  font-size: 20em;
+  color: #fff;
 }
-
 
 @keyframes backgroundMove {
 
@@ -41,17 +31,91 @@
   }
 }
 
+@keyframes fadeOut {
+  0% {opacity: 1;}
+  100% {opacity: 0;} 
+} 
 
 .climate{
-  align-self: flex-start;
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 1;
+  grid-row-end: 1;
 }
 
 .change{
-  align-self: flex-end;
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 2;
+  grid-row-end: 2;
 }
 
 
 svg{
   overflow: hidden;
   z-index: -1;
+}
+
+.tagBox{
+  width: 40%;
+  height: 60%;
+  background: #fff;
+}
+
+.tagPoxGridPos{
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 2;
+  grid-row-end: 4;
+  align-self: end;
+  justify-self: end;
+}
+
+
+.tagGrid{
+  display: grid;
+  grid-template-columns: 5% 90% 5%;
+  grid-template-rows: 5% 90% 5%;
+}
+
+.tagSearch{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+}
+
+.tagSearchTitle{
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
+
+.tagGridPos{
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 2;
+  align-self: center;
+  place-self: center;
+}
+
+.rangeTagsWithBox{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+
+}
+
+.rangeTagsWithBox p {
+  margin: 0;
+  padding: 0;
+}
+
+
+.rangeTagsWithBox p {
+  margin: 0;
+  padding: 0;
 }

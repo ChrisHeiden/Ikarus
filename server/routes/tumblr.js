@@ -4,6 +4,9 @@ var router = express.Router();
 
 var Twit = require('twit');
 var config = require('./config');
+var Data =  require('../routes/data')
+var tagData = new Data();
+
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -21,31 +24,17 @@ router.get('/', function(req, res, next) {
 
 
     // Make the request
-    client.taggedPosts('climatechange', { limit: 100 }, gotData);
-
+    client.taggedPosts(tagData.getTag(), gotData);
 
     function gotData(err, data, response)
     {
         tumblrRes = data;
-        for(let i = 0; i < tumblrRes.length; ++i)
-        {
-        console.log(tumblrRes[i]);  
-        }
+        //for(let i = 0; i < tumblrRes.length; ++i)
+        //{
+        //console.log(tumblrRes[i]);  
+        //}
         res.json(tumblrRes);
     }
 });
 
 module.exports = router;
-
-/*
-
-// Authenticate via API Key
-
-
-
-Consumer Key 
-Consumer Secret 
-Token 
-Token Secret 
-API Key mH85E3PedN8n8XluzYfynjryLpPzG7Y6LdtGqTRrCuwmERZV3q
-*/

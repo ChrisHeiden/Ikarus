@@ -6,6 +6,7 @@ var logger = require('morgan');
 var twitterRouter = require('./routes/twitter');
 var tumblrRouter = require('./routes/tumblr');
 var instaRouter = require('./routes/instagram');
+var flickrRouter = require('./routes/flickr');
 
 var app = express();
 
@@ -21,7 +22,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/twitter', twitterRouter);
 app.use('/tumblr', tumblrRouter);
-app.use('/insta', instaRouter);
+app.use('/instagram', instaRouter);
+app.use('/flickr', flickrRouter);
 
 
 module.exports = app;

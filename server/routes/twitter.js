@@ -3,6 +3,9 @@ var router = express.Router();
 
 var Twit = require('twit');
 var config = require('./config');
+var Data =  require('../routes/data')
+var tagData = new Data();
+
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -11,7 +14,7 @@ router.get('/', function(req, res, next) {
 
   var param = 
   {
-    q: 'climatechange since:2011-07-11',
+    q: tagData.getTag() + ' since:2011-07-11',
     count: 1000
   }   
 

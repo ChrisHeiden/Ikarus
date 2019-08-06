@@ -20,7 +20,11 @@ class MiddleDot extends Component {
         this.setState({y: pos.y});
     }
 
-    render() {        
+    render() { 
+        var opacityTwitter;       
+        var opacityInstagram;       
+        var opacityTumblr;      
+
         let styles = {
             alignSelf: this.props.alignSelf, 
             justifySelf: this.props.justifySelf, 
@@ -28,13 +32,75 @@ class MiddleDot extends Component {
             width: this.state.diameter + "px",
             height: this.state.diameter + "px",
         };
+      
+
+        if(this.props.tumblr == true)
+        {
+            opacityTumblr = 1;
+        }
+        else
+        {
+            opacityTumblr = 0;
+        }
+
+        if(this.props.twitter == true)
+        {
+            opacityTwitter = 1;
+        }
+        else
+        {
+            opacityTwitter = 0;
+        }
+
+        if(this.props.instagram ==  true)
+        {
+            opacityInstagram = 1;
+        }
+        else
+        {
+            opacityInstagram = 0;
+        }
 
 
         return (
             <div className="infoVisGridPos dotPos gridVis">
                 <div ref={this.refCallback} className="testDot" style={styles}></div>
-                <PlattformDot alignSelf="start" justifySelf="center" opacity="1" title="Tumblr" middleX={this.state.x} middleY={this.state.y}/>
-                <PlattformDot alignSelf="end" justifySelf="end" opacity="1" title="Twitter" middleX={this.state.x} middleY={this.state.y}/>
+              
+                <PlattformDot 
+                    searchLocation={this.props.searchLocation} 
+                    removeNewDatasetValue={this.props.removeNewDatasetValue}
+                    removeOldDatasetValue={this.props.removeOldDatasetValue} 
+                    howMany={this.props.howMany} 
+                    alignSelf="end" 
+                    justifySelf="end" 
+                    opacity={opacityTwitter} 
+                    title="Twitter" 
+                    middleX={this.state.x}
+                    middleY={this.state.y}/>
+
+                <PlattformDot 
+                    searchLocation={this.props.searchLocation} 
+                    removeNewDatasetValue={this.props.removeNewDatasetValue} 
+                    removeOldDatasetValue={this.props.removeOldDatasetValue} 
+                    howMany={this.props.howMany} 
+                    alignSelf="start" 
+                    justifySelf="center"
+                    opacity={opacityTumblr}
+                    title="Tumblr" 
+                    middleX={this.state.x} 
+                    middleY={this.state.y}/>
+
+    	        <PlattformDot 
+                    searchLocation={this.props.searchLocation} 
+                    removeNewDatasetValue={this.props.removeNewDatasetValue} 
+                    removeOldDatasetValue={this.props.removeOldDatasetValue} 
+                    howMany={this.props.howMany} 
+                    alignSelf="end" 
+                    justifySelf="start" 
+                    opacity={opacityInstagram}
+                    title="Flickr" 
+                    middleX={this.state.x}
+                    middleY={this.state.y}/>    
             </div>
         ); 
     }
@@ -43,9 +109,9 @@ class MiddleDot extends Component {
 export default MiddleDot;
 
 /*
-
-                <PlattformDot alignSelf="end" justifySelf="end" opacity="1" title="Twitter" middleX={this.state.x} middleY={this.state.y}/>
-
-                <PlattformDot alignSelf="end" justifySelf="start" opacity="1" title="Instagram" middleX={this.state.x} middleY={this.state.y}/>            
-
-                */
+   {tumblr}
+                {twitter}
+                {instagram}
+<PlattformDot alignSelf="end" justifySelf="end" opacity="1" title="Twitter" middleX={this.state.x} middleY={this.state.y}/>
+<PlattformDot alignSelf="end" justifySelf="start" opacity="1" title="Instagram" middleX={this.state.x} middleY={this.state.y}/>            
+*/
