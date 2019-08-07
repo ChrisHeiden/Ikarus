@@ -16,6 +16,13 @@ input[type=text]:hover{
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    align-items: center;
+}
+
+.field > input[type=checkbox]
+{
+    margin-top: 0;
+    margin-left: 5%;
 }
 
 .button{
@@ -29,6 +36,6 @@ input[type=text]:hover{
 }
 
 .button:hover{
-    border-color: #1b1b1b;
+    background: #dfdfdf;
 }
 

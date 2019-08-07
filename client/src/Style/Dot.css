@@ -1,52 +1,25 @@
-.dot{
-    background: #fff;
-    max-width: 300px;
-    max-height: 300px; 
-    border-radius: 50%;
-}
 .infoDot{
-    /*background: #fff;*/
-    background: white;
+    background: #fff;
     width: 10px;
     height: 10px;
     position: absolute;
 }
 
 .absoluteDot{
-    background: red;
+    background: #fff;
     width: 10px;
     height: 10px;
     position: absolute;
     border-radius: 50%;
     cursor: pointer;
+    float:left;
 }
 
-.location{
-    color: #fff;
-    position: absolute;
+.absoluteDot:hover{
+    background: #ff0000;
 }
 
-.dot1{
-    align-self: start;
-    justify-self: center;
-}
-
-.dot2{
-    align-self: end;
-    justify-self: end;
-}
-.dot3{
-    align-self: end;
-    justify-self: start;
-}
-
-.middleDot{
-    align-self: center;
-    justify-self: center;
-    background: #fff;
-    opacity: .1;
-}
-.testDot{
+.plattformDot{
     background: #fff;
     grid-column-start: 1;
     grid-column-end: 1;
@@ -62,11 +35,40 @@
     left: 100%;
 }
 
-
 .gridVis{
     height: 100%;
     width: 100%;
     display: grid; 
     grid-template-columns: 100%;
     grid-template-rows:100%;
+}
+
+.hoverInformation{
+    position: absolute;
+    color: #fff;
+}
+
+.hoverDate{
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+.hoverLocation{
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 2;
+    grid-row-end: 2;
+}
+
+.showInfos{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 50% 50%;
+    justify-items: start;
+    align-items: center;
+}
+.showInfos > p{
+    margin: 0;
 }
