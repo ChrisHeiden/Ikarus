@@ -27,36 +27,3 @@ router.get('/', function(req, res, next) {
 });
 
 module.exports = router;
-
-
-
-/*
-
- // You can use callbacks or promises
-    // You can use callbacks or promises
-    instagram.get('users/self', (err, data) => {
-        if (err) {
-        // an error occured
-        console.log(err);
-        } else {
-        console.log(data);
-        }
-    });
-
-
-      app.get('/auth/instagram', (req, res) => {
-        res.redirect(instagram.getAuthorizationUrl(redirectUri, { scope: ['basic'] }));
-      });
-
-      // Handle auth code and get access_token for user
-        app.get('/auth/instagram/callback', async (req, res) => {
-            try {
-            const data = await instagram.authorizeUser(req.query.code, redirectUri);
-            // Search for tags by name.
-            instagram.get('tags/search', { q: 'climateChange' }).then(data => {
-                console.log(data)
-            });            
-            } catch (err) {
-            }
-        });
-*/
