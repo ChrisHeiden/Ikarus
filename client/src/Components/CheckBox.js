@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import '../Style/CheckBox.css'
 
 class CheckBox extends Component {
     constructor(props){
@@ -36,12 +37,13 @@ class CheckBox extends Component {
     render() { 
     
         return (
-            <label className="container">{this.props.title}
-                <input
+            <div className="flex">
+            <p >{this.props.title}</p>
+            <input
                     type="checkbox" 
                     checked={this.state.check}
                     onChange={this.handleInputChange} />
-            </label>
+            </div>
         );
     }
 }
