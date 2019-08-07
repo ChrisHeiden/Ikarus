@@ -27,7 +27,7 @@
 
 .transitionAnimation{
   animation: show 3s;
-  animation-delay: 500ms;
+  animation-delay: 2s;
   animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
@@ -76,8 +76,8 @@
 .mainFocusGridPos{
   grid-column-start: 2;
   grid-column-end: 2;
-  grid-row-start: 2;
-  grid-row-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 3;
 }
 
 

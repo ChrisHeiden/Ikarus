@@ -14,7 +14,7 @@ body{
 .generalGrid{
     display: grid;
     grid-template-columns: 10% auto  10%;
-    grid-template-rows: 10% auto 10%;
+    grid-template-rows: 5% 5% auto 2%;
     width: 100vw;
     height: 100vh;
     justify-items: start;
