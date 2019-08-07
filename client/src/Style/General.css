@@ -52,7 +52,6 @@ body{
     color: black;
     font-size: 100%;
     display: inline;
-
 }
 
 input[type="range"] {
@@ -65,4 +64,8 @@ input[type="text"]{
 
 p{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+h3{
+    margin-top: 7%;
 }

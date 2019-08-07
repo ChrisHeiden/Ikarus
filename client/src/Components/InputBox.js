@@ -88,13 +88,13 @@ class InputBox extends Component {
                 <h1>Filters</h1>
                 <div className="line"></div>
                 <div className="focusField">
-                    <p>Remove oldest Datasets</p>
+                    <h3>Remove oldest Datasets</h3>
                     <Slider removeDatasets={this.removeOldDatasets} step={1} min={0} max={100} value={100}/>
-                    <p>Remove newest Datasets</p>
+                    <h3>Remove newest Datasets</h3>
                     <Slider removeDatasets={this.removeNewDatasets} value={0} step={1} min={0} max={100}/>
-                    <p>Name of the Locations</p>
+                    <h3>Name of the Locations</h3>
                     <TextinputField searchLocationData={this.searchLocationData}/>
-                    <p>Plattform</p>
+                    <h3>Plattform</h3>
                     <CheckBox initCheck={this.state.twitter} isChecked={this.isChecked} title={"Twitter"}/>
                     <CheckBox initCheck={this.state.tumblr} isChecked={this.isChecked} title={"Tumblr"}/>
                     <CheckBox initCheck={this.state.instagram} isChecked={this.isChecked} title={"Instagram"}/>
