@@ -205,28 +205,26 @@ class PlattformDot extends Component {
                 const removeNewDatasetValue = this.props.removeNewDatasetValue;
                 const removeOldDatasetValue = this.props.removeOldDatasetValue;
                 let dot;
+
                
                 if(removeOldDatasetValue != -1) {
-                    /*if(this.state.locations[index] == undefined || 
-                       this.state.locations[index] == "" || 
-                       this.props.searchLocation == undefined || 
-                       this.props.searchLocation == "")
-                    {
-
-                    }*/
-                    //else{
-                        //if(this.state.locations[index].search(this.props.searchLocation) == -1)
-                        //{
-
-                        //}
-                        //else{
+                    if(this.props.showAllLocations == false){
+                        if(this.props.searchLocation != undefined && 
+                            this.state.locations[index] != undefined &&
+                            this.state.locations[index].search(this.props.searchLocation) != -1){
+                            if(this.props.searchLocation == "" || this.state.locations[index] == ""){}
                             if(index <= removeOldDatasetValue && index >= removeNewDatasetValue)
                             {
                                 dot = <Dot searchLocation={this.props.searchLocation} key={index} middleX={this.props.middleX} middleY={this.props.middleY} plattformPosX={this.state.x} plattformPosY={this.state.y} location={this.state.locations[index]} date={date} distance={distance} oldest={oldestPost} newest={newestPost} diameter={this.state.diameter}></Dot>
                             }
-                        //}
-                    //}
-                    
+                        }    
+                    }
+                    else{
+                        if(index <= removeOldDatasetValue && index >= removeNewDatasetValue)
+                        {
+                            dot = <Dot searchLocation={this.props.searchLocation} key={index} middleX={this.props.middleX} middleY={this.props.middleY} plattformPosX={this.state.x} plattformPosY={this.state.y} location={this.state.locations[index]} date={date} distance={distance} oldest={oldestPost} newest={newestPost} diameter={this.state.diameter}></Dot>
+                        }                    
+                    }                   
                 }
                 else{
 
@@ -274,7 +272,7 @@ class PlattformDot extends Component {
 
               
             return (
-                <div ref={this.refCallback} className="testDot" style={styles} onClick={this.onClick}>
+                <div ref={this.refCallback} className="plattformDot" style={styles} onClick={this.onClick}>
                     {click}
                     {this.calcDots(distance, oldest, newest)}
                 </div>

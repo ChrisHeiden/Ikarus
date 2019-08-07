@@ -17,6 +17,7 @@ class InfoVis extends Component {
         return (
             <div className="infoVisGridPos dotPos gridVis">
                 <MiddleDot 
+                        showAllLocations={this.props.showAllLocations} 
                         twitter={this.props.twitter} 
                         instagram={this.props.instagram}
                         tumblr={this.props.tumblr}

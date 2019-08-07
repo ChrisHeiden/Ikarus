@@ -64,9 +64,10 @@ class MiddleDot extends Component {
 
         return (
             <div className="infoVisGridPos dotPos gridVis">
-                <div ref={this.refCallback} className="testDot" style={styles}></div>
+                <div ref={this.refCallback} className="plattformDot" style={styles}></div>
               
                 <PlattformDot 
+                    showAllLocations={this.props.showAllLocations} 
                     searchLocation={this.props.searchLocation} 
                     removeNewDatasetValue={this.props.removeNewDatasetValue}
                     removeOldDatasetValue={this.props.removeOldDatasetValue} 
@@ -79,6 +80,7 @@ class MiddleDot extends Component {
                     middleY={this.state.y}/>
 
                 <PlattformDot 
+                    showAllLocations={this.props.showAllLocations} 
                     searchLocation={this.props.searchLocation} 
                     removeNewDatasetValue={this.props.removeNewDatasetValue} 
                     removeOldDatasetValue={this.props.removeOldDatasetValue} 
@@ -90,7 +92,8 @@ class MiddleDot extends Component {
                     middleX={this.state.x} 
                     middleY={this.state.y}/>
 
-    	        <PlattformDot 
+                <PlattformDot 
+                    showAllLocations={this.props.showAllLocations} 
                     searchLocation={this.props.searchLocation} 
                     removeNewDatasetValue={this.props.removeNewDatasetValue} 
                     removeOldDatasetValue={this.props.removeOldDatasetValue} 

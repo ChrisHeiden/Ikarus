@@ -128,27 +128,25 @@ class Dot extends Component {
         let stylesDot = {
           top: point.y,
           left: point.x,
-          width: this.state.width + "px",
-          height: this.state.height + "px",
           opacity: (point.procent / 100)
         };
 
         let stylesText = {
           top: point.y - 15,
-          left: point.x + 25,
+          left: point.x + 35,
         };
+        console.log(this.props.date);
 
-
-        let loca;
+        let info;
 
         if(this.state.clickState === true)
         {
-          loca = <p style={stylesText} className="location">{this.props.location}</p>
+          info = <p style={stylesText} className="location">{this.props.location}</p>
         }
 
         if(this.state.hover === true)
         {
-          loca = <p style={stylesText} className="location">{this.props.location}</p>
+          info = <div className="showInfos"><p>{this.props.location}</p><p>{this.props.date.toString()}</p></div>
         }
     
         
@@ -160,7 +158,11 @@ class Dot extends Component {
                 className="absoluteDot" 
                 style={stylesDot}>
             </div>
-            {loca}
+            <div 
+              style={stylesText}
+              className="hoverInformation">
+              {info}
+            </div>
           </div>
       );
     }

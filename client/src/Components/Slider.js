@@ -32,7 +32,7 @@ class InputBox extends Component {
     render() {
         return (
             <input 
-                class="slider"
+                className="slider"
                 type="range" 
                 min={this.props.min} max={this.props.max} 
                 value={this.state.sliderValue} 

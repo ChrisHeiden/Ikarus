@@ -19,6 +19,7 @@ class InputBox extends Component {
         this.removeNewDatasets = this.removeNewDatasets.bind(this);
         this.searchLocationData = this.searchLocationData.bind(this);
         this.isChecked = this.isChecked.bind(this);
+        this.removeLoctionSearch = this.removeLoctionSearch.bind(this);
     } 
 
     searchLocationData(location) {
@@ -69,6 +70,10 @@ class InputBox extends Component {
         }
     }
 
+    removeLoctionSearch(event){
+        this.props.removeLoctionSearch(event);
+    }
+
     render() {
         return (
             <div className="box inputBoxGridPos">
@@ -80,7 +85,7 @@ class InputBox extends Component {
                     <h3>Remove newest Datasets</h3>
                     <Slider removeDatasets={this.removeNewDatasets} value={0} step={1} min={0} max={100}/>
                     <h3>Name of the Locations</h3>
-                    <TextinputField searchLocationData={this.searchLocationData}/>
+                    <TextinputField removeLoctionSearch={this.removeLoctionSearch} searchLocationData={this.searchLocationData}/>
                     <h3>Plattform</h3>
                     <CheckBox initCheck={this.state.twitter} isChecked={this.isChecked} title={"Twitter"}/>
                     <CheckBox initCheck={this.state.tumblr} isChecked={this.isChecked} title={"Tumblr"}/>
@@ -93,7 +98,8 @@ class InputBox extends Component {
 
 InputBox.propTypes = {
     getAmount: PropTypes.func,
-    lookUpPlattform: PropTypes.func
+    lookUpPlattform: PropTypes.func,
+    removeLoctionSearch: PropTypes.func
  }
 //TODO: change max to real Max value that has been found
 export default InputBox;

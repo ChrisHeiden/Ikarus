@@ -23,6 +23,7 @@ class Transition extends Component {
       twitter: true,
       tumblr: true,
       instagram: true,
+      showAllLocations: true,
     }; 
     this.showInfoBoxFunc = this.showInfoBoxFunc.bind(this);
     this.showInputBoxFunc = this.showInputBoxFunc.bind(this);
@@ -31,6 +32,7 @@ class Transition extends Component {
     this.removeNewDatasets = this.removeNewDatasets.bind(this);
     this.searchLocationData = this.searchLocationData.bind(this);
     this.lookUpPlattform = this.lookUpPlattform.bind(this);
+    this.removeLoctionSearch = this.removeLoctionSearch.bind(this);
     this.amountTweets = 0;
   }
 
@@ -79,6 +81,10 @@ class Transition extends Component {
     },() => {});
   }
 
+  removeLoctionSearch(event){
+    this.setState({showAllLocations: event});
+  }
+
 
   render() {
 
@@ -86,7 +92,7 @@ class Transition extends Component {
     let showInputField;
 
     if(this.state.showInputField === true){
-      showInputField = <InputBox lookUpPlattform ={this.lookUpPlattform} searchLocationData={this.searchLocationData} removeNewDatasets={this.removeNewDatasets} removeOldDatasets={this.removeOldDatasets} getAmount={this.getAmount} amountTw={this.amountTweets}/>;
+      showInputField = <InputBox removeLoctionSearch={this.removeLoctionSearch} lookUpPlattform ={this.lookUpPlattform} searchLocationData={this.searchLocationData} removeNewDatasets={this.removeNewDatasets} removeOldDatasets={this.removeOldDatasets} getAmount={this.getAmount} amountTw={this.amountTweets}/>;
     }
 
     if(this.state.showInfoBox === true){
@@ -117,6 +123,7 @@ class Transition extends Component {
         </div>
         <div className="mainFocusGridPos mainFocus">
           <InfoVis 
+                  showAllLocations={this.state.showAllLocations}
                   twitter={this.state.twitter} 
                   instagram={this.state.instagram}
                   tumblr={this.state.tumblr}

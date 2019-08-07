@@ -7,9 +7,11 @@ class TextinputField extends Component {
         super(props);
         this.state = {
             textValue: "",            
+            check: true,            
         };
         this.handleText = this.handleText.bind(this);
         this.searchLocation = this.searchLocation.bind(this);
+        this.onClickCheckbox = this.onClickCheckbox.bind(this);
     } 
     
     
@@ -19,8 +21,27 @@ class TextinputField extends Component {
 
     searchLocation(){
         console.log(this.state.textValue);
+        this.onClickCheckbox();
         this.props.searchLocationData(this.state.textValue);
     }
+
+    onClickCheckbox(){
+        if(this.state.check == true){
+            this.setState({textValue: "",
+                           check: false}, () => {this.props.removeLoctionSearch(this.state.check)});
+        }
+        else{
+            this.setState({check: true}, () => {this.props.removeLoctionSearch(this.state.check)});
+        }
+    }
+
+    onEnter(event){
+        if (event.keyCode === 13) 
+        {
+            this.onClickCheckbox();
+        }
+    }
+
 
 
     render() {
@@ -30,15 +51,21 @@ class TextinputField extends Component {
                 <input type="text" 
                        value={this.state.textValue} 
                        onChange={this.handleText}
+                       onKeyPress={this.enter}
                        placeholder="Find Location name ..."/>
                 <div className="button" onClick={this.searchLocation}><p>Search</p></div>
+                <input
+                    type="checkbox"
+                    checked={this.state.check}
+                    onChange={this.onClickCheckbox} />            
             </div>
         );
     }
 }
 
 TextinputField.propTypes = {
-    searchLocationData: PropTypes.func
+    searchLocationData: PropTypes.func,
+    removeLoctionSearch: PropTypes.func
 }
 
 
