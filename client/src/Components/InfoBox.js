@@ -14,6 +14,7 @@ class InfoBox extends Component {
         return (
             <div className="infoBoxGridPos box">
                 <h1>About the App</h1>
+                <div className="line"></div>
                 <p className="focusField">
                     In this project we try to visulize twitter data. In this specific case
                     the server gets tweets abount climate change. Even more it tries to 

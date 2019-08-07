@@ -27,8 +27,11 @@ class TextinputField extends Component {
      
         return (
             <div className="field">
-                <input type="text" value={this.state.textValue} onChange={this.handleText}/>
-                <div className="button" onClick={this.searchLocation}>Search</div>
+                <input type="text" 
+                       value={this.state.textValue} 
+                       onChange={this.handleText}
+                       placeholder="Find Location name ..."/>
+                <div className="button" onClick={this.searchLocation}><p>Search</p></div>
             </div>
         );
     }

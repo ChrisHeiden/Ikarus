@@ -86,6 +86,7 @@ class InputBox extends Component {
         return (
             <div className="box inputBoxGridPos">
                 <h1>Filters</h1>
+                <div className="line"></div>
                 <div className="focusField">
                     <p>Remove oldest Datasets</p>
                     <Slider removeDatasets={this.removeOldDatasets} step={1} min={0} max={100} value={100}/>
