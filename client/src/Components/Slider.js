@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../Style/InputBox.css';
 import '../Style/General.css';
+import '../Style/Slider.css';
 
 class InputBox extends Component {
     
@@ -32,6 +33,7 @@ class InputBox extends Component {
     render() {
         return (
             <input 
+                class="slider"
                 type="range" 
                 min={this.props.min} max={this.props.max} 
                 value={this.state.sliderValue} 
