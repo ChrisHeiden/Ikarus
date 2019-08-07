@@ -12,30 +12,22 @@ class CheckBox extends Component {
     } 
 
     componentWillMount(){
-        this.setState({
-            check: this.props.initCheck,
-        })
+        this.setState({check: this.props.initCheck},() => {});
     }
 
     handleInputChange(event) {
        if(this.state.check == false)
        {
-            this.setState({
-                check: true
-            })
+            this.setState({check: true},() => {this.props.isChecked(this.props.title);});
        }
        else
        {
-            this.setState({
-                check: false
-            })
+            this.setState({check: false},() => {this.props.isChecked(this.props.title);});
        }
-        this.props.isChecked(this.props.title);
     }
 
 
     render() { 
-    
         return (
             <div className="flex">
             <p >{this.props.title}</p>

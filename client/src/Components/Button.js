@@ -11,24 +11,19 @@ class Button extends Component {
             height: 0,
             showBox: false
         }; 
-
        this.showBox = this.showBox.bind(this);
     }
 
-    //componentDidMount(){
-    //    this.state.height = this.refs.button.getBoundingClientRect().width;
-    //    this.forceUpdate();
-    //}
 
     showBox(){
         if(this.state.showBox === false)
         {
-            this.setState({ showBox: true });
+            this.setState({ showBox: true },() => { this.props.click(this.state.showBox); })
         }
         else{
-            this.setState({ showBox: false });
+            this.setState({ showBox: false },() => { this.props.click(this.state.showBox); })
         }
-        this.props.click(this.state.showBox);
+        
     }
 
     render() {

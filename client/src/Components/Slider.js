@@ -21,12 +21,11 @@ class InputBox extends Component {
     }
 */
     componentWillMount() {
-        this.setState({sliderValue: this.props.value});
+        this.setState({sliderValue: this.props.value},() => {});
     }
 
     handleSlider(event){
-        this.setState({sliderValue: event.target.value});
-        this.props.removeDatasets(this.state.sliderValue);
+        this.setState({sliderValue: event.target.value},() => {this.props.removeDatasets(this.state.sliderValue);});
     }
 
 

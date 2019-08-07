@@ -91,29 +91,20 @@ class Dot extends Component {
     click(){
       if(this.state.clickState === false)
       {
-        this.setState({
-          clickState: true, 
-        });
+        this.setState({clickState: true},() => {});
       }
       else{
-        this.setState({
-          clickState: false,
-        });
+        this.setState({clickState: false},() => {});
       }
     }
 
     hoverOver(){
-      this.setState({
-        hover: true, 
-      });
+      this.setState({hover: true},() => {});
     }
 
     hoverOff(){
-      this.setState({
-        hover: false,  
-      });     
+      this.setState({hover: false},() => {});
     }
-
 
     render() {
       if(this.props.plattformPosX == 0 || this.props.plattformPosY == 0 )
@@ -124,8 +115,6 @@ class Dot extends Component {
       }
       else
       {
-
-      
         const point = this.calPosition(this.props.middleX, 
                                       this.props.middleY,
                                       this.props.plattformPosX,
@@ -136,8 +125,6 @@ class Dot extends Component {
                                       this.props.date,
                                       this.props.diameter)
                                     
-        //console.log(point)       
-
         let stylesDot = {
           top: point.y,
           left: point.x,
@@ -163,14 +150,11 @@ class Dot extends Component {
         {
           loca = <p style={stylesText} className="location">{this.props.location}</p>
         }
-        //("Plattform: " + this.props.location);
-        //console.log("Plattform: " + this.props.searchLocation);
-
+    
         
         return (
           <div>
             <div 
-                //onClick={this.click}  
                 onMouseEnter={this.hoverOver}
                 onMouseLeave={this.hoverOff} 
                 className="absoluteDot" 
@@ -188,16 +172,3 @@ Dot.propTypes = {
   getMainDot: PropTypes.func
 }
 export default Dot;
-
-
-
-
-/*
-
- console.log(this.props.searchLocation);
-                console.log(this.state.locations[index]);
-                if(this.state.locations[index].search("UK") != -1){
-                    console.log("Funzt");
-                }
-                console.log("Plattform: " + this.props.searchLocation)
-*/

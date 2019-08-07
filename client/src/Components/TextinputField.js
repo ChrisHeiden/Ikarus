@@ -14,7 +14,7 @@ class TextinputField extends Component {
     
     
     handleText(event) {
-        this.setState({textValue: event.target.value});
+        this.setState({textValue: event.target.value},() => {});
     }
 
     searchLocation(){

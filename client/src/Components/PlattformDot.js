@@ -57,7 +57,7 @@ class PlattformDot extends Component {
                 dates: date,
                 locations: location,
                 gotInformation: true
-            });      
+            },() => {});      
         }
         if(this.props.title === 'Tumblr')
         {
@@ -76,7 +76,7 @@ class PlattformDot extends Component {
                         dates: date,
                         locations: location,
                         gotInformation: true
-                    });          
+                    },() => {});          
                 });
                 //console.log("");
         }
@@ -104,7 +104,7 @@ class PlattformDot extends Component {
                         dates: date,
                         locations: location,
                         gotInformation: true
-                    });          
+                    },() => {});         
                     
                 }); 
         }
@@ -126,7 +126,7 @@ class PlattformDot extends Component {
                     dates: date,
                     locations: location,
                     gotInformation: true
-                });          
+                },() => {});         
             });   
         }     
         this.forceUpdate();
@@ -166,17 +166,17 @@ class PlattformDot extends Component {
         this.setState({
             x: pos.x,
             y: pos.y
-        });            
+        },() => {});       
     }
 
     onClick(){
         if(this.state.click == false)
         {
-            this.setState({click: true})
+            this.setState({click: true},() => {});
         }
         else
         {
-            this.setState({click: false})
+            this.setState({click: false},() => {});
         }
     }
 

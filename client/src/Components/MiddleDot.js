@@ -16,8 +16,8 @@ class MiddleDot extends Component {
 
     refCallback = element => {
         const pos = element.getBoundingClientRect();
-        this.setState({x: pos.x});            
-        this.setState({y: pos.y});
+        this.setState({x: pos.x},() => {});            
+        this.setState({y: pos.y},() => {});
     }
 
     render() { 
@@ -107,11 +107,3 @@ class MiddleDot extends Component {
 }
 
 export default MiddleDot;
-
-/*
-   {tumblr}
-                {twitter}
-                {instagram}
-<PlattformDot alignSelf="end" justifySelf="end" opacity="1" title="Twitter" middleX={this.state.x} middleY={this.state.y}/>
-<PlattformDot alignSelf="end" justifySelf="start" opacity="1" title="Instagram" middleX={this.state.x} middleY={this.state.y}/>            
-*/

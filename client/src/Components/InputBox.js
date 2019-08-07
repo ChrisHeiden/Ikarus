@@ -38,48 +38,35 @@ class InputBox extends Component {
         {
             if(this.state.tumblr == false)
             {
-                this.setState({
-                    tumblr: true
-                })
+                this.setState({tumblr: true},() => { this.props.lookUpPlattform(this.state.tumblr,this.state.twitter,this.state.instagram)});
             }
             else
             {
-                this.setState({
-                    tumblr: false
-                })
+                this.setState({tumblr: false},() => { this.props.lookUpPlattform(this.state.tumblr,this.state.twitter,this.state.instagram)});
             }
         }
         else if(plattform == "Twitter")
         {
             if(this.state.twitter == false)
             {
-                this.setState({
-                    twitter: true
-                })
+                this.setState({twitter: true},() => { this.props.lookUpPlattform(this.state.tumblr,this.state.twitter,this.state.instagram)});
             }
             else
             {
-                this.setState({
-                    twitter: false
-                })
+                this.setState({twitter: false},() => { this.props.lookUpPlattform(this.state.tumblr,this.state.twitter,this.state.instagram)});
             }
         }
         else if(plattform == "Instagram")
         {
             if(this.state.instagram == false)
             {
-                this.setState({
-                    instagram: true
-                })
+                this.setState({instagram: true},() => { this.props.lookUpPlattform(this.state.tumblr,this.state.twitter,this.state.instagram)});
             }
             else
             {
-                this.setState({
-                    instagram: false
-                })
+                this.setState({instagram: false},() => { this.props.lookUpPlattform(this.state.tumblr,this.state.twitter,this.state.instagram)});
             }
         }
-        this.props.lookUpPlattform(this.state.tumblr,this.state.twitter,this.state.instagram)
     }
 
     render() {

@@ -8,8 +8,6 @@ class InfoBox extends Component {
         super(props);
     } 
 
-
-
     render() {
         return (
             <div className="infoBoxGridPos box">

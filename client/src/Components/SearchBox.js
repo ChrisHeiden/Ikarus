@@ -22,32 +22,27 @@ class SearchBox extends Component {
         {
             this.setState({
                 clicked: false,
-            })
+            },() => {});
             this.boxClass.push('animateLineOff');
         }
         else
         {
             this.setState({
                 clicked: true,
-            })
+            },() => {});
             this.boxClass.push('animateLineOn');
         }
-
         this.props.sendTag(this.props.title)
     }
  
     render() {
-
-        if(this.state.clicked == true)
-        {
-
-        }
         let style = {
             gridColumnStart: this.props.gridColumnStart, 
             gridColumnEnd: this.props.gridColumnEnd,
             gridRowStart: this.props.gridRowStart,
             gridRowEnd: this.props.gridRowEnd,
         }
+
         return (
             <div style={style}>
                 <h1 onClick={this.isChecked}>{this.props.title}</h1>

@@ -15,8 +15,7 @@ class Transition extends Component {
     this.state ={
       showInfoBox: false,
       showInputField: false,
-      buttonInfoLabel: "i",
-      buttonInputLabel: "<",
+      buttonInputLabel: ">",
       amountFilter: 100,
       removeOldDatasetValue: 100,
       removeNewDatasetValue: 0,
@@ -36,40 +35,40 @@ class Transition extends Component {
   }
 
   showInfoBoxFunc(info){
-    this.setState({ showInfoBox: info });
+    this.setState({ showInfoBox: info },() => {})
   }
 
   showInputBoxFunc(info){
-    this.setState({ showInputField: info });
+    this.setState({ showInputField: info },() => {});
     if(this.state.buttonInputLabel == ">") {
-      this.setState({ buttonInputLabel: "<" });
+      this.setState({ buttonInputLabel: "<" },() => {})
     }else{
-      this.setState({ buttonInputLabel: ">" });
+      this.setState({ buttonInputLabel: ">" },() => {})
     }
   }
 
   removeOldDatasets(number){
     this.setState({
       removeOldDatasetValue: number
-    });  
+    },() => {}); 
   }
 
   removeNewDatasets(number){
     this.setState({
       removeNewDatasetValue: number
-    });  
+    },() => {});  
   }
 
   searchLocationData(location) {
     this.setState({
       searchLocation: location
-    });
+    },() => {});
   } 
 
   getAmount(number){
     this.setState({
       amountFilter: number
-    });
+    },() => {});
   }
 
   lookUpPlattform(tumblr, twitter, instagram){
@@ -77,7 +76,7 @@ class Transition extends Component {
       tumblr: tumblr,
       twitter: twitter,
       instagram: instagram
-    });
+    },() => {});
   }
 
 
@@ -87,7 +86,6 @@ class Transition extends Component {
     let showInputField;
 
     if(this.state.showInputField === true){
-      console.log(this.amountTweets)
       showInputField = <InputBox lookUpPlattform ={this.lookUpPlattform} searchLocationData={this.searchLocationData} removeNewDatasets={this.removeNewDatasets} removeOldDatasets={this.removeOldDatasets} getAmount={this.getAmount} amountTw={this.amountTweets}/>;
     }
 
