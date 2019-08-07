@@ -4,6 +4,7 @@ import socketIOClient from 'socket.io-client';
 import '../Style/App.css';
 import Transition from './Transition';
 import CheckBox from './CheckBox';
+import SearchBox from './SearchBox'
 
 class App extends Component {
   constructor(props){
@@ -20,6 +21,7 @@ class App extends Component {
     this.sendTag = this.sendTag.bind(this);
     this.isChecked = this.isChecked.bind(this);
     //this.getServerResponse = this.getServerResponse.bind(this);
+   
   }
 
   componentDidMount() {
@@ -27,8 +29,9 @@ class App extends Component {
     this.socket.on("gotInfo", data => this.setState({ gotServerResponse: data }));
   }
 
-  isChecked(title)
+  isChecked(event)
   { 
+    const title = event.target.innerHTML;
     if(title === "#ClimateChange")
     {
       if(this.state.climateChange == true)
@@ -104,20 +107,20 @@ class App extends Component {
   }
 
 
-  sendTag(){
-    if(this.state.pollution == true)
+  sendTag(tag){
+    if(tag == '#Pollution')
     {
       this.socket.emit('sendTag', "Pollution");
     }
-    else if(this.state.climateChange == true)
+    else if(tag == '#ClimateChange')
     {
       this.socket.emit('sendTag', "ClimateChange");
     }
-    else if(this.state.economy == true)
+    else if(tag == '#Economy')
     {
       this.socket.emit('sendTag', "Economy");
     }
-    else if(this.state.speciesExtinction == true)
+    else if(tag == '#SpeciesExtinction')
     {
       this.socket.emit('sendTag', "SpeciesExtinction");
     }
@@ -144,6 +147,8 @@ class App extends Component {
       
     }
 
+    
+
     return (
         <div className="generalGrid">
           <div style={animation} className={"titleGridPos titleFlexLayout"} >
@@ -151,20 +156,12 @@ class App extends Component {
             <h1 className="change"><span/>Ikarus</h1>
             <div className="tagBox tagPoxGridPos tagGrid">
               <h1 className="tagSearchTitle">Search a Tag</h1>
-              <div className="tagGridPos tagSearch ">
-                <div className="rangeTagsWithBox">
-                  <CheckBox title={"#ClimateChange"} isChecked={this.isChecked} initCheck={this.state.climateChange}/>
-                </div>
-                <div className="rangeTagsWithBox">
-                <CheckBox title={"#Pollution"} isChecked={this.isChecked} initCheck={this.state.climateChange}/>
-                </div>
-                <div className="rangeTagsWithBox">
-                <CheckBox title={"#Economy"} isChecked={this.isChecked} initCheck={this.state.climateChange}/>
-                </div>
-                <div className="rangeTagsWithBox">
-                <CheckBox title={"#SpeciesExtinction"} isChecked={this.isChecked} initCheck={this.state.climateChange}/>
-                </div>
-                <div onClick={this.sendTag}>Send</div>
+              <div className="line"></div>
+              <div className="tagGridPos tagSearch tagMenu">
+                <SearchBox title={'#ClimateChange'} sendTag={this.sendTag} gridColumnStart="1" gridColumnEnd="1" gridRowStart="1" gridRowEnd="1" />
+                <SearchBox title={'#SpeciesExtinction'} sendTag={this.sendTag} gridColumnStart="1" gridColumnEnd="1" gridRowStart="2" gridRowEnd="2" />
+                <SearchBox title={'#Economy'} sendTag={this.sendTag} gridColumnStart="1" gridColumnEnd="1" gridRowStart="3" gridRowEnd="3" />
+                <SearchBox title={'#Pollution'} sendTag={this.sendTag} gridColumnStart="1" gridColumnEnd="1" gridRowStart="4" gridRowEnd="4" />
               </div>
             </div>
           </div>
@@ -175,3 +172,5 @@ class App extends Component {
 }
 
 export default App;
+
+
