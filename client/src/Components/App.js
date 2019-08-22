@@ -13,7 +13,8 @@ class App extends Component {
       gotServerResponse: false,
     };
     this.socket;
-    this.sendTag = this.sendTag.bind(this);   
+    this.sendTag = this.sendTag.bind(this);  
+    this.tagTitle = ""; 
   }
 
   componentDidMount() {
@@ -27,6 +28,7 @@ class App extends Component {
     else if(tag == '#ClimateChange'){ this.socket.emit('sendTag', "ClimateChange"); }
     else if(tag == '#Economy'){ this.socket.emit('sendTag', "Economy"); }
     else if(tag == '#SpeciesExtinction'){ this.socket.emit('sendTag', "SpeciesExtinction"); }
+    this.tagTitle = tag;
   }
 
   render() {
@@ -35,7 +37,7 @@ class App extends Component {
 
     if(this.state.gotServerResponse == true)
     {
-      transition = <Transition/>
+      transition = <Transition title = {this.tagTitle}/>
       animation = {
         animationName: 'fadeOut',
         animationDuration: '2s',

@@ -115,7 +115,7 @@ class Transition extends Component {
     return (
       <div className="transition generalGrid transitionAnimation">
         <div className="transitionHeader transitionHeaderGridPos">
-          <h1>Climate Change</h1>
+          <h1>{this.props.title}</h1>
         </div>
         <div className="buttonLayout buttonGridPos">
           <Button content="i" click={this.showInfoBoxFunc} styleButton={infoStyle}/>
