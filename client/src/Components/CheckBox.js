@@ -30,7 +30,7 @@ class CheckBox extends Component {
     render() { 
         return (
             <div className="flex">
-            <p >{this.props.title}</p>
+            <p className="spacing">{this.props.title}</p>
             <input
                     type="checkbox" 
                     checked={this.state.check}

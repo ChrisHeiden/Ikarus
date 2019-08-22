@@ -76,6 +76,7 @@ class MiddleDot extends Component {
                     justifySelf="end" 
                     opacity={opacityTwitter} 
                     title="Twitter" 
+                    color={"#1da1f2"}
                     middleX={this.state.x}
                     middleY={this.state.y}/>
 
@@ -89,6 +90,7 @@ class MiddleDot extends Component {
                     justifySelf="center"
                     opacity={opacityTumblr}
                     title="Tumblr" 
+                    color={"#202023"}
                     middleX={this.state.x} 
                     middleY={this.state.y}/>
 
@@ -102,6 +104,7 @@ class MiddleDot extends Component {
                     justifySelf="start" 
                     opacity={opacityInstagram}
                     title="Flickr" 
+                    color={"#202023"}
                     middleX={this.state.x}
                     middleY={this.state.y}/>    
             </div>

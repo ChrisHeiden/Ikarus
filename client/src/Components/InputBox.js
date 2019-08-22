@@ -57,7 +57,7 @@ class InputBox extends Component {
                 this.setState({twitter: false},() => { this.props.lookUpPlattform(this.state.tumblr,this.state.twitter,this.state.instagram)});
             }
         }
-        else if(plattform == "Instagram")
+        else if(plattform == "Flickr")
         {
             if(this.state.instagram == false)
             {
@@ -87,9 +87,11 @@ class InputBox extends Component {
                     <h3>Name of the Locations</h3>
                     <TextinputField removeLoctionSearch={this.removeLoctionSearch} searchLocationData={this.searchLocationData}/>
                     <h3>Plattform</h3>
-                    <CheckBox initCheck={this.state.twitter} isChecked={this.isChecked} title={"Twitter"}/>
-                    <CheckBox initCheck={this.state.tumblr} isChecked={this.isChecked} title={"Tumblr"}/>
-                    <CheckBox initCheck={this.state.instagram} isChecked={this.isChecked} title={"Instagram"}/>
+                    <div className="checkboxes">
+                        <CheckBox initCheck={this.state.twitter} isChecked={this.isChecked} title={"Twitter"}/>
+                        <CheckBox initCheck={this.state.tumblr} isChecked={this.isChecked} title={"Tumblr"}/>
+                        <CheckBox initCheck={this.state.instagram} isChecked={this.isChecked} title={"Flickr"}/>
+                    </div>
                 </div>
             </div>
         );

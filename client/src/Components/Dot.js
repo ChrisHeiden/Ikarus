@@ -18,6 +18,7 @@ class Dot extends Component {
         this.calPosition = this.calPosition.bind(this);
         this.hoverOff = this.hoverOff.bind(this);
         this.hoverOver = this.hoverOver.bind(this);
+        this.initColor = this.props.color;
     };  
 
     calcXPos(procent, middleX, plattformPosX, distance, diameter){
@@ -31,7 +32,6 @@ class Dot extends Component {
       else
       {
         const startX = middleX + (diameter/2) - (this.state.width/2);
-        //console.log(startX);
         x = ((-procent /100) * distance.x) + startX;  
       }
       return x;
@@ -60,9 +60,9 @@ class Dot extends Component {
           procent: 0
       };
 
-      var actualPost = new Date(date);
-      var oldestPost = new Date(oldest);
-      var newestPost = new Date(newest);
+      var actualPost = date
+      var oldestPost = oldest
+      var newestPost = newest
 
     
 
@@ -124,18 +124,29 @@ class Dot extends Component {
                                       this.props.newest,
                                       this.props.date,
                                       this.props.diameter)
-                                    
-        let stylesDot = {
-          top: point.y,
-          left: point.x,
-          opacity: (point.procent / 100)
-        };
+        let stylesDot;
+        if(this.state.hover == true){
+          stylesDot = {
+            top: point.y,
+            left: point.x,
+            background: 'red',
+            opacity: (point.procent / 100)
+          };
+        }
+        else{
+          stylesDot = {
+            top: point.y,
+            left: point.x,
+            background: this.initColor,
+            opacity: (point.procent / 100)
+          };
+        }
+        
 
         let stylesText = {
           top: point.y - 15,
           left: point.x + 35,
         };
-        console.log(this.props.date);
 
         let info;
 
