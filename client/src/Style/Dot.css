@@ -6,7 +6,6 @@
 }
 
 .absoluteDot{
-    background: #fff;
     width: 10px;
     height: 10px;
     position: absolute;
@@ -20,7 +19,7 @@
 }
 
 .plattformDot{
-    background: #fff;
+    /*background: #fff;*/
     grid-column-start: 1;
     grid-column-end: 1;
     grid-row-start: 1;

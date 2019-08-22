@@ -4,7 +4,8 @@
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    align-content: center;
+    align-content: center;  
+    /* padding-left: 5%; */
 }
 
 .flex > p{
@@ -15,7 +16,7 @@
 input[type=checkbox] {
     position: relative;
     cursor: pointer;
-    margin-top: 4%;
+    margin-top: 30%;
 }
 
 input[type=checkbox]:before {
@@ -37,4 +38,17 @@ input[type=checkbox]:checked:after {
     position: absolute;
     top: 2px;
     left: 6px;
+}
+
+.checkboxes{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+}
+
+.spacing{
+    margin-left: 2%; 
 }

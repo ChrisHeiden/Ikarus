@@ -5,7 +5,8 @@ html{
 }
   
 body{
-    background: #1b1b1b;
+    /*background: #1b1b1b;*/
+    background: powderblue;
     margin: 0;
     padding: 0;
     font-family: 'Times New Roman', Times, serif;
@@ -45,13 +46,18 @@ body{
 }
 
 .focusField{
+    -ms-grid-column: 2;
     grid-column-start: 2;
     grid-column-end: 2;
+    -ms-grid-row: 3;
     grid-row-start: 3;
     grid-row-end: 3;
     color: black;
-    font-size: 100%;
+    font-size: 95%;
     display: inline;
+    margin: 0;
+    padding: 0;
+    margin-top: 5%;
 }
 
 input[type="range"] {
@@ -67,5 +73,8 @@ p{
 }
 
 h3{
-    margin-top: 7%;
+/*  margin-top: 6%;*/
+    margin: 0;
+    padding: 0;
 }
+
