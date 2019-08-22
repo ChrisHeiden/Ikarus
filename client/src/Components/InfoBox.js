@@ -14,13 +14,8 @@ class InfoBox extends Component {
                 <h1>About the App</h1>
                 <div className="line"></div>
                 <p className="focusField">
-                    In this project we try to visulize twitter data. In this specific case
-                    the server gets tweets abount climate change. Even more it tries to 
-                    present locations in which the hashtag <strong>#climatechange</strong> is used more often.
-                    This bubbles are bigger then others. Futhermore, you can filter the 
-                    the amount of locations they at least have to have, and you can filter by locations.
-
-                    <br></br>            
+                    In this project we try to visulize plattform data. In this specific case
+                    the server gets Twitter, Flickr and Tumblr data about a specific tag.
                     <br></br>            
                     The project is called Ikarus. This name is specificially chose by the programmer.
                     Ikarus tried to escape the Labyrint with wing out of wachs. However, the fly too 
