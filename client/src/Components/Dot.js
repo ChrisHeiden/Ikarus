@@ -19,6 +19,7 @@ class Dot extends Component {
         this.hoverOff = this.hoverOff.bind(this);
         this.hoverOver = this.hoverOver.bind(this);
         this.initColor = this.props.color;
+        this.onClick = this.onClick.bind(this);
     };  
 
     calcXPos(procent, middleX, plattformPosX, distance, diameter){
@@ -71,13 +72,13 @@ class Dot extends Component {
       {
         procent = 0;
       }
-
+/*
       if(procent > 100)
       {
         alert(procent);
       }
-
-          const y = this.calcYPos(procent, middleY, plattformPosY, distance, diameter);
+*/
+      const y = this.calcYPos(procent, middleY, plattformPosY, distance, diameter);
       const x = this.calcXPos(procent, middleX, plattformPosX, distance, diameter);
     
       point.x = x;
@@ -106,6 +107,11 @@ class Dot extends Component {
       this.setState({hover: false},() => {});
     }
 
+    onClick(){
+      this.setState({hover: true},() => {});
+      this.props.dotClick(this.props.date);
+    }
+
     render() {
       if(this.props.plattformPosX == 0 || this.props.plattformPosY == 0 )
       {
@@ -125,7 +131,7 @@ class Dot extends Component {
                                       this.props.date,
                                       this.props.diameter)
         let stylesDot;
-        if(this.state.hover == true){
+        if(this.state.hover === true || this.props.search===true){
           stylesDot = {
             top: point.y,
             left: point.x,
@@ -166,6 +172,7 @@ class Dot extends Component {
             <div 
                 onMouseEnter={this.hoverOver}
                 onMouseLeave={this.hoverOff} 
+                onClick={this.onClick}
                 className="absoluteDot" 
                 style={stylesDot}>
             </div>
@@ -182,6 +189,7 @@ class Dot extends Component {
 
 
 Dot.propTypes = {
-  getMainDot: PropTypes.func
+  getMainDot: PropTypes.func,
+  dotClick: PropTypes.func
 }
 export default Dot;
