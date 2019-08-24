@@ -14,14 +14,14 @@ class InfoBox extends Component {
                 <h1>About the App</h1>
                 <div className="line"></div>
                 <p className="focusField">
-                    In this project we try to visulize plattform data. In this specific case
-                    the server gets Twitter, Flickr and Tumblr data about a specific tag.
+                    In this project, we try to visualize platform data. In this specific case, the server 
+                    gets Twitter, Flickr and Tumblr data about a specific tag.
                     <br></br>            
-                    The project is called Ikarus. This name is specificially chose by the programmer.
-                    Ikarus tried to escape the Labyrint with wing out of wachs. However, the fly too 
-                    near the sun, and so he fall and died. The same happens with our economy. We try to 
-                    maximaize our economy all the time without think about the danger. On of the results 
-                    is climate change and if we don't careful, we will also fall. 
+                    The project is called Ikarus. This name is specifically chosen by the programmer. Ikarus 
+                    tried to escape the Labyrint with wing out of wax. However, the fly too near the sun, 
+                    and so he falls and died. The same happens with our economy. We try to maximize our economy 
+                    all the time without thinking about the danger. One of the results is climate change and if 
+                    we don't care, we will also fall.
                 </p>
             </div>
         );
