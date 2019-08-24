@@ -1,4 +1,4 @@
-# Project Ikarus - Server
+# Project Icarus - Server
 
 The server is necessary to get Twitter information 
 

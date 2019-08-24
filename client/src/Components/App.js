@@ -51,7 +51,7 @@ class App extends Component {
         <div className="generalGrid">
           <div style={animation} className={"titleGridPos titleFlexLayout"} >
             <h1 className="climate">Projection</h1>
-            <h1 className="change"><span/>Ikarus</h1>
+            <h1 className="change"><span/>Icarus</h1>
             <div className="tagBox tagPoxGridPos tagGrid">
               <h1 className="tagSearchTitle">Search a Tag</h1>
               <div className="line"></div>

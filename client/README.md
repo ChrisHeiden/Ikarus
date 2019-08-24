@@ -1,4 +1,4 @@
-# Project Ikarus - Client
+# Project Icarus - Client
 
 The client will be visulize Twitter information in a curtain way 
 
