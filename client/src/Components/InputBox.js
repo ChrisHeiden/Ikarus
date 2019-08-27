@@ -81,9 +81,9 @@ class InputBox extends Component {
                 <div className="line"></div>
                 <div className="focusField">
                     <h3>Remove oldest Datasets</h3>
-                    <Slider removeDatasets={this.removeOldDatasets} step={1} min={0} max={100} value={100}/>
+                    <Slider removeDatasets={this.removeOldDatasets} step={1} min={0} max={200} value={200}/>
                     <h3>Remove newest Datasets</h3>
-                    <Slider removeDatasets={this.removeNewDatasets} value={0} step={1} min={0} max={100}/>
+                    <Slider removeDatasets={this.removeNewDatasets} value={0} step={1} min={0} max={200}/>
                     <h3>Name of the Locations</h3>
                     <TextinputField removeLoctionSearch={this.removeLoctionSearch} searchLocationData={this.searchLocationData}/>
                     <h3>Plattform</h3>
@@ -103,5 +103,5 @@ InputBox.propTypes = {
     lookUpPlattform: PropTypes.func,
     removeLoctionSearch: PropTypes.func
  }
-//TODO: change max to real Max value that has been found
-export default InputBox;
+
+ export default InputBox;

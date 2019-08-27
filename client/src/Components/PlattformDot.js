@@ -62,10 +62,9 @@ class PlattformDot extends Component {
 
     calcDots(distance){
         const dates = this.props.dates;
+        const allDates = this.props.allDates;
         let listItems = dates.map((date, index) =>
             {
-                const howMany = this.props.howMany;
-
                 const removeNewDatasetValue = this.props.removeNewDatasetValue;
                 const removeOldDatasetValue = this.props.removeOldDatasetValue;
                 let dot;
@@ -76,14 +75,15 @@ class PlattformDot extends Component {
                             this.props.locations[index] != undefined &&
                             this.props.locations[index].search(this.props.searchLocation) != -1){
                             if(this.props.searchLocation == "" || this.props.locations[index] == ""){}
-                            if(index <= removeOldDatasetValue && index >= removeNewDatasetValue)
+                            let allDateIndex = allDates.indexOf(date);
+                            if(allDateIndex <= removeOldDatasetValue && allDateIndex >= removeNewDatasetValue)
                             {
-                                console.log("test2");
                                 dot = <Dot search={false} searchLocation={this.props.searchLocation} key={index} middleX={this.props.middleX} middleY={this.props.middleY} plattformPosX={this.state.x} plattformPosY={this.state.y} location={this.props.locations[index]} date={date} distance={distance} oldest={this.props.allDates[this.props.allDates.length-1]} newest={this.props.allDates[0]} diameter={this.state.diameter}></Dot>
                             }
                         }    
                     }
                     else{
+                        let allDateIndex = allDates.indexOf(date);
                         if(index <= removeOldDatasetValue && index >= removeNewDatasetValue)
                         {
                             if(this.props.timeSearch != -1 && this.props.timeSearch < date.getFullYear() + .5 && this.props.timeSearch > date.getFullYear() - .5)

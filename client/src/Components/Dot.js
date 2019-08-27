@@ -136,7 +136,7 @@ class Dot extends Component {
             top: point.y,
             left: point.x,
             background: 'red',
-            opacity: (point.procent / 100)
+            //opacity: (point.procent / 100)
           };
         }
         else{
@@ -144,7 +144,7 @@ class Dot extends Component {
             top: point.y,
             left: point.x,
             background: this.initColor,
-            opacity: (point.procent / 100)
+            //opacity: (point.procent / 100)
           };
         }
         

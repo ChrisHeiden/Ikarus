@@ -96,10 +96,7 @@ class MiddleDot extends Component {
         allDate.sort((a,b) => { return b.getTime() - a.getTime();});
 
         size = allDate.length;
-        for(let x = 0; x < size; ++x)
-        {
-            console.log(allDate[x]);
-        } 
+
         this.setState({
             twitterDates: twitterDates,
             tumblrDates: tumblrDates,
@@ -133,32 +130,16 @@ class MiddleDot extends Component {
         };
       
 
-        if(this.props.tumblr == true)
-        {
-            opacityTumblr = 1;
-        }
-        else
-        {
-            opacityTumblr = 0;
-        }
+        if(this.props.tumblr == true){ opacityTumblr = 1; }
+        else{ opacityTumblr = 0; }
 
         if(this.props.twitter == true)
-        {
-            opacityTwitter = 1;
-        }
-        else
-        {
-            opacityTwitter = 0;
-        }
+        { opacityTwitter = 1; }
+        else { opacityTwitter = 0;}
 
         if(this.props.instagram ==  true)
-        {
-            opacityInstagram = 1;
-        }
-        else
-        {
-            opacityInstagram = 0;
-        }
+        { opacityInstagram = 1;}
+        else { opacityInstagram = 0;}
     
 
         return (
