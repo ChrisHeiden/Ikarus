@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import '../Style/Transition.css';
 import '../Style/App.css';
 import '../Style/Dot.css';
@@ -108,7 +110,11 @@ class MiddleDot extends Component {
 
             dates: allDate,
             gotInformation: true,
-        })
+        }, () =>{
+            console.log(this.state.dates.length);
+            this.props.getAmountOfDots(this.state.dates.length);
+        });
+        
         //this.forceUpdate();
     };
 
@@ -153,7 +159,6 @@ class MiddleDot extends Component {
                     searchLocation={this.props.searchLocation} 
                     removeNewDatasetValue={this.props.removeNewDatasetValue}
                     removeOldDatasetValue={this.props.removeOldDatasetValue} 
-                    howMany={this.props.howMany} 
                     alignSelf="end" 
                     justifySelf="end" 
                     opacity={opacityTwitter} 
@@ -174,7 +179,6 @@ class MiddleDot extends Component {
                     searchLocation={this.props.searchLocation} 
                     removeNewDatasetValue={this.props.removeNewDatasetValue} 
                     removeOldDatasetValue={this.props.removeOldDatasetValue} 
-                    howMany={this.props.howMany} 
                     alignSelf="start" 
                     justifySelf="center"
                     opacity={opacityTumblr}
@@ -195,7 +199,6 @@ class MiddleDot extends Component {
                     searchLocation={this.props.searchLocation} 
                     removeNewDatasetValue={this.props.removeNewDatasetValue} 
                     removeOldDatasetValue={this.props.removeOldDatasetValue} 
-                    howMany={this.props.howMany} 
                     alignSelf="end" 
                     justifySelf="start" 
                     opacity={opacityInstagram}
@@ -212,5 +215,9 @@ class MiddleDot extends Component {
         ); 
     }
 }
+
+MiddleDot.propTypes = {
+    getAmountOfDots: PropTypes.func
+ }
 
 export default MiddleDot;

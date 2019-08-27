@@ -33,6 +33,7 @@ class Transition extends Component {
     this.searchLocationData = this.searchLocationData.bind(this);
     this.lookUpPlattform = this.lookUpPlattform.bind(this);
     this.removeLoctionSearch = this.removeLoctionSearch.bind(this);
+    this.getAmountOfDots = this.getAmountOfDots.bind(this);
     this.amountTweets = 0;
   }
 
@@ -85,6 +86,13 @@ class Transition extends Component {
     this.setState({showAllLocations: event});
   }
 
+  getAmountOfDots(number){
+    this.setState({ 
+      amountFilter: number,
+      removeOldDatasetValue: number
+    })
+  }
+
 
   render() {
 
@@ -92,7 +100,7 @@ class Transition extends Component {
     let showInputField;
 
     if(this.state.showInputField === true){
-      showInputField = <InputBox removeLoctionSearch={this.removeLoctionSearch} lookUpPlattform ={this.lookUpPlattform} searchLocationData={this.searchLocationData} removeNewDatasets={this.removeNewDatasets} removeOldDatasets={this.removeOldDatasets} getAmount={this.getAmount} amountTw={this.amountTweets}/>;
+      showInputField = <InputBox amountFilter={this.state.amountFilter} removeLoctionSearch={this.removeLoctionSearch} lookUpPlattform ={this.lookUpPlattform} searchLocationData={this.searchLocationData} removeNewDatasets={this.removeNewDatasets} removeOldDatasets={this.removeOldDatasets} getAmount={this.getAmount} amountTw={this.amountTweets}/>;
     }
 
     if(this.state.showInfoBox === true){
@@ -123,12 +131,12 @@ class Transition extends Component {
         </div>
         <div className="mainFocusGridPos mainFocus">
           <InfoVis 
+                  getAmountOfDots={this.getAmountOfDots}
                   showAllLocations={this.state.showAllLocations}
                   twitter={this.state.twitter} 
                   instagram={this.state.instagram}
                   tumblr={this.state.tumblr}
                   searchLocation={this.state.searchLocation} 
-                  howMany={this.state.amountFilter} 
                   removeNewDatasetValue={this.state.removeNewDatasetValue} 
                   removeOldDatasetValue={this.state.removeOldDatasetValue} />
           <div className="showBoxes">

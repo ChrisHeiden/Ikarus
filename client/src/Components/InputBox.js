@@ -75,15 +75,16 @@ class InputBox extends Component {
     }
 
     render() {
+        console.log(this.props.amountFilter);
         return (
             <div className="box inputBoxGridPos">
                 <h1>Filters</h1>
                 <div className="line"></div>
                 <div className="focusField">
                     <h3>Remove oldest Datasets</h3>
-                    <Slider removeDatasets={this.removeOldDatasets} step={1} min={0} max={200} value={200}/>
+                    <Slider removeDatasets={this.removeOldDatasets} step={1} min={0} max={this.props.amountFilter} value={this.props.amountFilter}/>
                     <h3>Remove newest Datasets</h3>
-                    <Slider removeDatasets={this.removeNewDatasets} value={0} step={1} min={0} max={200}/>
+                    <Slider removeDatasets={this.removeNewDatasets} value={0} step={1} min={0} max={this.props.amountFilter}/>
                     <h3>Name of the Locations</h3>
                     <TextinputField removeLoctionSearch={this.removeLoctionSearch} searchLocationData={this.searchLocationData}/>
                     <h3>Plattform</h3>
