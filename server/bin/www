@@ -33,7 +33,6 @@ io.sockets.on('connection', newConnection);
 
 function newConnection(socket)
 {
-  console.log(socket.id);
   socket.on('sendTag', function(tag){
     data.setTag(tag);
     socket.emit('gotInfo', true);

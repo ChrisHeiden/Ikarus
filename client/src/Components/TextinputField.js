@@ -20,7 +20,6 @@ class TextinputField extends Component {
     }
 
     searchLocation(){
-        console.log(this.state.textValue);
         this.onClickCheckbox();
         this.props.searchLocationData(this.state.textValue);
     }

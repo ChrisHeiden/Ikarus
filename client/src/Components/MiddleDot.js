@@ -111,7 +111,6 @@ class MiddleDot extends Component {
             dates: allDate,
             gotInformation: true,
         }, () =>{
-            console.log(this.state.dates.length);
             this.props.getAmountOfDots(this.state.dates.length);
         });
         

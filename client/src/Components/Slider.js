@@ -30,8 +30,6 @@ class InputBox extends Component {
 
 
     render() {
-        console.log(this.props.max);
-
         return (
             <input 
                 className="slider"
