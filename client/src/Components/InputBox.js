@@ -75,7 +75,6 @@ class InputBox extends Component {
     }
 
     render() {
-        console.log(this.props.amountFilter);
         return (
             <div className="box inputBoxGridPos">
                 <h1>Filters</h1>
