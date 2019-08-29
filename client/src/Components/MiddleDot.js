@@ -56,10 +56,22 @@ class MiddleDot extends Component {
                 for(let x = 0; x < size; ++x)
                 {
                     twitterDates.push(new Date(tweet[x].user.created_at));
-                    twitterDates.sort((a,b) => { return b.getTime() - a.getTime();});
                     twitterLocations.push(tweet[x].user.location);
                 }    
             }); 
+
+        /********TUMBLR**********/
+        fetch('/tumblr')
+            .then(res => res.json())
+            .then(tumb => {
+                let size = tumb.length;
+                for(let x = 0; x <size; ++x)
+                {
+                    tumblrDates.push(new Date(tumb[x].date));
+                    tumblrLocations.push(tumb[x].location);
+                }
+            });  
+
 
         /********FLICKR**********/
         const response = await fetch('/flickr')
@@ -76,28 +88,13 @@ class MiddleDot extends Component {
         for(let x = 0; x < size; ++x)
         {
             flickrDates.push(new Date(date[x].photo.dates.taken));
-            flickrDates.sort((a,b) => { return b.getTime() - a.getTime();});
             flickrLocations.push(date[x].photo.owner.location);
         }   
       
-        /********TUMBLR**********/
-        fetch('/tumblr')
-            .then(res => res.json())
-            .then(tumb => {
-                let size = tumb.length;
-                for(let x = 0; x <size; ++x)
-                {
-                    tumblrDates.push(new Date(tumb[x].date));
-                    tumblrDates.sort((a,b) => { return b.getTime() - a.getTime();});
-                    tumblrLocations.push(tumb[x].location);
-                }
-            });  
-
+        /*Combine all datasets*/
         var flickrTwitter = flickrDates.concat(twitterDates); 
         var allDate = flickrTwitter.concat(tumblrDates); 
         allDate.sort((a,b) => { return b.getTime() - a.getTime();});
-
-        size = allDate.length;
 
         this.setState({
             twitterDates: twitterDates,

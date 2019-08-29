@@ -47,5 +47,4 @@ InputBox.propTypes = {
     removeDatasets: PropTypes.func
  }
 
-//TODO: change max to real Max value that has been found
 export default InputBox;

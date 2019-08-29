@@ -16,8 +16,8 @@ class Transition extends Component {
       showInfoBox: false,
       showInputField: false,
       buttonInputLabel: ">",
-      amountFilter: 100,
-      removeOldDatasetValue: 100,
+      amountFilter: 1000,
+      removeOldDatasetValue: 1000,
       removeNewDatasetValue: 0,
       searchLocation: "",
       twitter: true,
@@ -91,6 +91,7 @@ class Transition extends Component {
       amountFilter: number,
       removeOldDatasetValue: number
     })
+    this.forceUpdate();
   }
 
 

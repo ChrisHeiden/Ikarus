@@ -83,8 +83,8 @@ class PlattformDot extends Component {
                         }    
                     }
                     else{
-                        let allDateIndex = allDates.indexOf(date);
-                        if(index <= removeOldDatasetValue && index >= removeNewDatasetValue)
+                        const allDateIndex = allDates.indexOf(date);
+                        if(allDateIndex <= removeOldDatasetValue && allDateIndex >= removeNewDatasetValue)
                         {
                             if(this.props.timeSearch != -1 && this.props.timeSearch < date.getFullYear() + .5 && this.props.timeSearch > date.getFullYear() - .5)
                             {
@@ -93,7 +93,7 @@ class PlattformDot extends Component {
                             else{
                                 dot = <Dot dotClick={this.dotClick} color={this.props.color} search={false} searchLocation={this.props.searchLocation} key={index} middleX={this.props.middleX} middleY={this.props.middleY} plattformPosX={this.state.x} plattformPosY={this.state.y} location={this.props.locations[index]} date={date} distance={distance} oldest={this.props.allDates[this.props.allDates.length-1]} newest={this.props.allDates[0]} diameter={this.state.diameter}></Dot>
                             }                             
-                        }             
+                        }       
                     }                   
                 }
                 else{
