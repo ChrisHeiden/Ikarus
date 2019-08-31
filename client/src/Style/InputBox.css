@@ -4,3 +4,15 @@
     grid-row-start: 3;
     grid-row-end: 3;
 }
+
+
+.spacingFilter{
+    margin-bottom: 5%;
+    margin-top: 5%;
+    padding: 10px;
+    border-bottom: 5px solid powderblue;
+}
+
+.spacingButton{
+    margin-top: 15%;
+}
