@@ -4,7 +4,9 @@ import '../Style/InputBox.css';
 import '../Style/General.css';
 import Slider from './Slider'
 import CheckBox from './CheckBox'
+import Button from './DisableButton'
 import TextinputField from './TextinputField'
+import YearFilter from './YearFilter'
 
 class InputBox extends Component {
     
@@ -14,17 +16,19 @@ class InputBox extends Component {
             twitter: true,
             tumblr: true,
             instagram: true,
+
+            timeSearch: false,
+            locationSearch: false,
         };        
         this.removeOldDatasets = this.removeOldDatasets.bind(this);
         this.removeNewDatasets = this.removeNewDatasets.bind(this);
-        this.searchLocationData = this.searchLocationData.bind(this);
+        this.searchLocation = this.searchLocation.bind(this);
         this.isChecked = this.isChecked.bind(this);
         this.removeLoctionSearch = this.removeLoctionSearch.bind(this);
+        this.searchYear = this.searchYear.bind(this);
+        this.showAllDots = this.showAllDots.bind(this);
+        this.removeTimeSearch = this.removeTimeSearch.bind(this);
     } 
-
-    searchLocationData(location) {
-        this.props.searchLocationData(location);
-    }
 
     removeOldDatasets(number){
         this.props.removeOldDatasets(number);
@@ -70,8 +74,31 @@ class InputBox extends Component {
         }
     }
 
-    removeLoctionSearch(event){
-        this.props.removeLoctionSearch(event);
+    removeLoctionSearch(){
+        this.setState({locationSearch: false},() => {this.props.removeLoctionSearch();}); 
+    }
+
+    removeTimeSearch(){
+        this.setState({timeSearch: false},() => { this.props.removeTimeSearch();});
+    }
+
+    
+    searchLocation(location) {
+        this.setState({locationSearch: true},() => {this.props.searchLocationData(location);});
+        
+    }
+
+    searchYear(number){
+        this.setState({timeSearch: true},() => {this.props.searchYear(number)});
+        
+    }
+
+    showAllDots(){
+        this.setState({locationSearch: false,timeSearch: false},() => {this.props.removeLoctionSearch();this.props.removeTimeSearch();}); 
+
+        //this.removeTimeSearch();
+        //this.removeLoctionSearch();
+        this.props.showAllDots(true);
     }
 
     render() {
@@ -80,18 +107,39 @@ class InputBox extends Component {
                 <h1>Filters</h1>
                 <div className="line"></div>
                 <div className="focusField">
-                    <h3>Remove oldest Datasets</h3>
-                    <Slider removeDatasets={this.removeOldDatasets} step={1} min={0} max={this.props.amountFilter} value={this.props.amountFilter}/>
-                    <h3>Remove newest Datasets</h3>
-                    <Slider removeDatasets={this.removeNewDatasets} value={0} step={1} min={0} max={this.props.amountFilter}/>
-                    <h3>Name of the Locations</h3>
-                    <TextinputField removeLoctionSearch={this.removeLoctionSearch} searchLocationData={this.searchLocationData}/>
-                    <h3>Plattform</h3>
-                    <div className="checkboxes">
-                        <CheckBox initCheck={this.state.twitter} isChecked={this.isChecked} title={"Twitter"}/>
-                        <CheckBox initCheck={this.state.tumblr} isChecked={this.isChecked} title={"Tumblr"}/>
-                        <CheckBox initCheck={this.state.instagram} isChecked={this.isChecked} title={"Flickr"}/>
+                <div className="spacingFilter">
+                        <h3>Remove oldest Datasets</h3>
+                        <Slider removeDatasets={this.removeOldDatasets} step={1} min={0} max={this.props.amountFilter} value={this.props.amountFilter}/>
+                        <h3>Remove newest Datasets</h3>
+                        <Slider removeDatasets={this.removeNewDatasets} value={0} step={1} min={0} max={this.props.amountFilter}/>
                     </div>
+                   
+                    <div className="spacingFilter">
+                        <h3>Name of the Locations</h3>
+                        <TextinputField locationSearch={this.state.locationSearch} removeLoctionSearch={this.removeLoctionSearch} searchLocation={this.searchLocation}/>
+                    </div>
+
+                    <div className="spacingFilter">
+                        <h3>Plattform</h3>
+                        <div className="checkboxes">
+                            <CheckBox initCheck={this.state.twitter} isChecked={this.isChecked} title={"Twitter"}/>
+                            <CheckBox initCheck={this.state.tumblr} isChecked={this.isChecked} title={"Tumblr"}/>
+                            <CheckBox initCheck={this.state.instagram} isChecked={this.isChecked} title={"Flickr"}/>
+                        </div>
+                    </div>
+
+                    <div className="spacingFilter">
+                        <h3>By Year</h3>
+                        <YearFilter timeSearch={this.state.timeSearch} removeTimeSearch={this.removeTimeSearch} searchYear={this.searchYear}/>
+                    </div>
+                    
+                    <div className="spacingButton">
+                        <Button hideDots={this.props.hideDots} 
+                                showAllDots={this.showAllDots} 
+                                timeSearched={this.state.timeSearch}
+                                locationSearched={this.state.locationSearch}/>
+                    </div>
+
                 </div>
             </div>
         );
@@ -101,7 +149,11 @@ class InputBox extends Component {
 InputBox.propTypes = {
     getAmount: PropTypes.func,
     lookUpPlattform: PropTypes.func,
-    removeLoctionSearch: PropTypes.func
+    removeLoctionSearch: PropTypes.func,
+    removeTimeSearch: PropTypes.func,
+    showAllDots: PropTypes.func,
+    removeSearch: PropTypes.func,
+    visbleDots: PropTypes.func
  }
 
  export default InputBox;

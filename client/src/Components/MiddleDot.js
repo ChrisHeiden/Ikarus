@@ -28,6 +28,7 @@ class MiddleDot extends Component {
            timeSearch: -1,   
         };
         this.dotClick = this.dotClick.bind(this); 
+        this.hideDots = this.hideDots.bind(this);
     }
 
     refCallback = element => {
@@ -118,6 +119,12 @@ class MiddleDot extends Component {
         this.setState({timeSearch: clickedDate},() => {});
     }
 
+    
+    hideDots(value){
+        this.props.hideDots(value)
+    }
+
+
     render() { 
         var opacityTwitter;       
         var opacityInstagram;       
@@ -149,6 +156,9 @@ class MiddleDot extends Component {
                 <div ref={this.refCallback} className="plattformDot" style={styles}></div>
               
                 <PlattformDot 
+                    hideDots={this.hideDots} 
+                    showAllDots={this.props.showAllDots}
+                    filterYear={this.props.filterYear}
                     timeSearch={this.state.timeSearch}
                     dotClick={this.dotClick}
                     showAllLocations={this.props.showAllLocations} 
@@ -169,6 +179,9 @@ class MiddleDot extends Component {
                     />
 
                 <PlattformDot 
+                    hideDots={this.hideDots} 
+                    showAllDots={this.props.showAllDots}
+                    filterYear={this.props.filterYear}
                     timeSearch={this.state.timeSearch}
                     dotClick={this.dotClick}
                     showAllLocations={this.props.showAllLocations} 
@@ -189,6 +202,9 @@ class MiddleDot extends Component {
                     />
 
                 <PlattformDot 
+                    hideDots={this.hideDots} 
+                    showAllDots={this.props.showAllDots}
+                    filterYear={this.props.filterYear}
                     timeSearch={this.state.timeSearch}
                     dotClick={this.dotClick}
                     showAllLocations={this.props.showAllLocations} 
@@ -213,7 +229,8 @@ class MiddleDot extends Component {
 }
 
 MiddleDot.propTypes = {
-    getAmountOfDots: PropTypes.func
+    getAmountOfDots: PropTypes.func,
+    hideDots: PropTypes.func
  }
 
 export default MiddleDot;

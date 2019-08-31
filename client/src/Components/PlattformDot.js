@@ -20,6 +20,8 @@ class PlattformDot extends Component {
         this.calcDistance = this.calcDistance.bind(this);        
         this.calcDots = this.calcDots.bind(this); 
         this.dotClick = this.dotClick.bind(this); 
+        this.hideDots = this.hideDots.bind(this); 
+        
         this.time;
     }
 
@@ -59,6 +61,10 @@ class PlattformDot extends Component {
         this.props.dotClick(clickedDate.getFullYear());
     }
 
+    hideDots(value){
+        this.props.hideDots(value)
+    }
+
 
     calcDots(distance){
         const dates = this.props.dates;
@@ -68,37 +74,52 @@ class PlattformDot extends Component {
                 const removeNewDatasetValue = this.props.removeNewDatasetValue;
                 const removeOldDatasetValue = this.props.removeOldDatasetValue;
                 let dot;
-               
-                if(removeOldDatasetValue != -1) {
-                    if(this.props.showAllLocations == false){
-                        if(this.props.searchLocation != undefined && 
-                            this.props.locations[index] != undefined &&
-                            this.props.locations[index].search(this.props.searchLocation) != -1){
-                            if(this.props.searchLocation == "" || this.props.locations[index] == ""){}
-                            let allDateIndex = allDates.indexOf(date);
-                            if(allDateIndex <= removeOldDatasetValue && allDateIndex >= removeNewDatasetValue)
-                            {
-                                dot = <Dot search={false} searchLocation={this.props.searchLocation} key={index} middleX={this.props.middleX} middleY={this.props.middleY} plattformPosX={this.state.x} plattformPosY={this.state.y} location={this.props.locations[index]} date={date} distance={distance} oldest={this.props.allDates[this.props.allDates.length-1]} newest={this.props.allDates[0]} diameter={this.state.diameter}></Dot>
-                            }
-                        }    
-                    }
-                    else{
-                        const allDateIndex = allDates.indexOf(date);
-                        if(allDateIndex <= removeOldDatasetValue && allDateIndex >= removeNewDatasetValue)
-                        {
-                            if(this.props.timeSearch != -1 && this.props.timeSearch < date.getFullYear() + .5 && this.props.timeSearch > date.getFullYear() - .5)
-                            {
-                                dot = <Dot dotClick={this.dotClick} color={this.props.color} search={true} searchLocation={this.props.searchLocation} key={index} middleX={this.props.middleX} middleY={this.props.middleY} plattformPosX={this.state.x} plattformPosY={this.state.y} location={this.props.locations[index]} date={date} distance={distance} oldest={this.props.allDates[this.props.allDates.length-1]} newest={this.props.allDates[0]} diameter={this.state.diameter}></Dot>
-                            }
-                            else{
-                                dot = <Dot dotClick={this.dotClick} color={this.props.color} search={false} searchLocation={this.props.searchLocation} key={index} middleX={this.props.middleX} middleY={this.props.middleY} plattformPosX={this.state.x} plattformPosY={this.state.y} location={this.props.locations[index]} date={date} distance={distance} oldest={this.props.allDates[this.props.allDates.length-1]} newest={this.props.allDates[0]} diameter={this.state.diameter}></Dot>
-                            }                             
-                        }       
-                    }                   
-                }
-                else{
 
+                //console.log(this.props.searchLocation);
+                //console.log(this.props.filterYear);
+               
+                const allDateIndex = allDates.indexOf(date);
+                if(allDateIndex <= removeOldDatasetValue && allDateIndex >= removeNewDatasetValue)
+                {
+                    //console.log(1);
+                    if(this.props.searchLocation !== undefined &&
+                       this.props.searchLocation !== null && 
+                       this.props.locations[index] !== undefined &&
+                       this.props.searchLocation.length !== 0)
+                    {
+                        //console.log(6);
+                        /* filter location + time */
+                        if( this.props.locations[index].length !== 0 &&
+                            this.props.locations[index].search(this.props.searchLocation) != -1 && 
+                            date.getFullYear() == this.props.filterYear &&
+                            this.props.filterYear == -1)
+                         {
+                             //console.log(2);
+                             dot = <Dot showAllDots={this.props.showAllDots} hideDots={this.hideDots} showAll={false} dotClick={this.dotClick} color={this.props.color} search={true} searchLocation={this.props.searchLocation} key={index} middleX={this.props.middleX} middleY={this.props.middleY} plattformPosX={this.state.x} plattformPosY={this.state.y} location={this.props.locations[index]} date={date} distance={distance} oldest={this.props.allDates[this.props.allDates.length-1]} newest={this.props.allDates[0]} diameter={this.state.diameter}></Dot>      
+                         }
+                         /* filter only location */
+                         else if( this.props.locations[index].length !== 0 &&
+                                  this.props.locations[index].search(this.props.searchLocation) != -1)
+                         {
+                             //console.log(3);
+                             dot = <Dot showAllDots={this.props.showAllDots} hideDots={this.hideDots} search={false} searchLocation={this.props.searchLocation} key={index} middleX={this.props.middleX} middleY={this.props.middleY} plattformPosX={this.state.x} plattformPosY={this.state.y} location={this.props.locations[index]} date={date} distance={distance} oldest={this.props.allDates[this.props.allDates.length-1]} newest={this.props.allDates[0]} diameter={this.state.diameter}></Dot>
+                         }
+                    }
+                    /* filter only time */
+                    else if(this.props.filterYear != -1 && date.getFullYear() == this.props.filterYear)
+                    {
+                        //console.log(4);
+                        dot = <Dot showAllDots={this.props.showAllDots} hideDots={this.hideDots} showAll={false} dotClick={this.dotClick} color={this.props.color} search={true} searchLocation={this.props.searchLocation} key={index} middleX={this.props.middleX} middleY={this.props.middleY} plattformPosX={this.state.x} plattformPosY={this.state.y} location={this.props.locations[index]} date={date} distance={distance} oldest={this.props.allDates[this.props.allDates.length-1]} newest={this.props.allDates[0]} diameter={this.state.diameter}></Dot>
+                    }
+                    /* show all */
+                    else if(this.props.filterYear == -1 && date.getFullYear() != this.props.filterYear)
+                    {
+                        //console.log(5);
+                        dot = <Dot showAllDots={this.props.showAllDots} hideDots={this.hideDots} dotClick={this.dotClick} color={this.props.color} search={true} searchLocation={this.props.searchLocation} key={index} middleX={this.props.middleX} middleY={this.props.middleY} plattformPosX={this.state.x} plattformPosY={this.state.y} location={this.props.locations[index]} date={date} distance={distance} oldest={this.props.allDates[this.props.allDates.length-1]} newest={this.props.allDates[0]} diameter={this.state.diameter}></Dot>
+                    }           
+                    //console.log("");
                 }
+               
                 return dot;
             }  
         )
@@ -140,9 +161,9 @@ class PlattformDot extends Component {
                 click = <p style={textStyle} >{this.props.title}</p>
             }
 
-              
+            //onClick={this.onClick}
             return (
-                <div ref={this.refCallback} className="plattformDot" style={styles} onClick={this.onClick}>
+                <div ref={this.refCallback} className="plattformDot" style={styles}>
                     {click}
                     {this.calcDots(distance)}
                 </div>
@@ -153,7 +174,8 @@ class PlattformDot extends Component {
 
 
 Dot.PlattformDot = {
-    dotClick: PropTypes.func
+    dotClick: PropTypes.func,
+    hideDots: PropTypes.func
   }
 
 export default PlattformDot;

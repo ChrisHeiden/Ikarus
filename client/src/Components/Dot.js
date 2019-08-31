@@ -10,9 +10,11 @@ class Dot extends Component {
         super(props);
         this.state = {
           clickState: false,
+          visible: true,
           hover: false,
           width: 10,
           height: 10,
+          click: false,
         }
         this.click = this.click.bind(this);
         this.calPosition = this.calPosition.bind(this);
@@ -20,7 +22,12 @@ class Dot extends Component {
         this.hoverOver = this.hoverOver.bind(this);
         this.initColor = this.props.color;
         this.onClick = this.onClick.bind(this);
+        this.rightClick = this.rightClick.bind(this);
     };  
+
+    componentDidUpdate(){
+      
+    }
 
     calcXPos(procent, middleX, plattformPosX, distance, diameter){
       let x = 0;
@@ -112,6 +119,14 @@ class Dot extends Component {
       this.props.dotClick(this.props.date);
     }
 
+    rightClick(event){
+      if(event.button === 2){
+        if(this.state.hover === true){ 
+          this.setState({visible: false}, () => {this.props.hideDots(true)})
+        }
+      }
+    }
+
     render() {
       if(this.props.plattformPosX == 0 || this.props.plattformPosY == 0 )
       {
@@ -131,12 +146,12 @@ class Dot extends Component {
                                       this.props.date,
                                       this.props.diameter)
         let stylesDot;
-        if(this.state.hover === true || this.props.search===true){
+        if(this.state.hover === true ){ //|| this.props.search===true
           stylesDot = {
             top: point.y,
             left: point.x,
-            background: 'red',
-            //opacity: (point.procent / 100)
+            background: 'white',
+            opacity: (point.procent / 100)
           };
         }
         else{
@@ -144,8 +159,20 @@ class Dot extends Component {
             top: point.y,
             left: point.x,
             background: this.initColor,
-            //opacity: (point.procent / 100)
+            opacity: (point.procent / 100)
           };
+        }
+
+        //console.log(this.props.date.toString() + ": " + this.props.showAll)
+        //console.log(this.props.date.toString() + ": " + this.state.visible)
+        if(this.state.visible == false && this.props.showAllDots == false)   
+        {
+          const pair = {display: 'none'};
+          stylesDot = {...stylesDot, ...pair};
+        }
+        else{
+          const pair = {display: 'block'};
+          stylesDot = {...stylesDot, ...pair};
         }
         
 
@@ -156,12 +183,7 @@ class Dot extends Component {
 
         let info;
 
-        if(this.state.clickState === true)
-        {
-          info = <p style={stylesText} className="location">{this.props.location}</p>
-        }
-
-        if(this.state.hover === true)
+        if(this.state.clickState === true || this.state.hover === true)
         {
           info = <div className="showInfos"><p>{this.props.location}</p><p>{this.props.date.toString()}</p></div>
         }
@@ -170,9 +192,10 @@ class Dot extends Component {
         return (
           <div>
             <div 
+                onClick={this.click}
+                onMouseDown={this.rightClick}
                 onMouseEnter={this.hoverOver}
                 onMouseLeave={this.hoverOff} 
-                onClick={this.onClick}
                 className="absoluteDot" 
                 style={stylesDot}>
             </div>
@@ -190,6 +213,7 @@ class Dot extends Component {
 
 Dot.propTypes = {
   getMainDot: PropTypes.func,
-  dotClick: PropTypes.func
+  dotClick: PropTypes.func,
+  hideDots: PropTypes.func
 }
 export default Dot;

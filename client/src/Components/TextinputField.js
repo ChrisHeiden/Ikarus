@@ -8,29 +8,43 @@ class TextinputField extends Component {
         this.state = {
             textValue: "",            
             check: true,            
+            isText: true,            
         };
         this.handleText = this.handleText.bind(this);
         this.searchLocation = this.searchLocation.bind(this);
         this.onClickCheckbox = this.onClickCheckbox.bind(this);
+        this.removeLocationFilter = this.removeLocationFilter.bind(this);
+        this.regExp = new RegExp('^[a-zA-Z-]*$');
     } 
+    
+    componentWillReceiveProps(){
+        if(this.state.check == false)
+        {
+            //this.setState({check: this.props.locationSearch},() => {});
+        }
+    }
     
     
     handleText(event) {
-        this.setState({textValue: event.target.value},() => {});
+        if(event.target.value.match(this.regExp))
+        {
+            this.setState({textValue: event.target.value, isText: true},() => {});
+        }
+        else
+        {
+            this.setState({isText: false},() => {});
+        }
     }
 
     searchLocation(){
         this.onClickCheckbox();
-        this.props.searchLocationData(this.state.textValue);
+        this.props.searchLocation(this.state.textValue);
     }
 
     onClickCheckbox(){
         if(this.state.check == true){
-            this.setState({textValue: "",
-                           check: false}, () => {this.props.removeLoctionSearch(this.state.check)});
-        }
-        else{
-            this.setState({check: true}, () => {this.props.removeLoctionSearch(this.state.check)});
+            this.setState({
+                           check: false}, () => {});
         }
     }
 
@@ -41,22 +55,37 @@ class TextinputField extends Component {
         }
     }
 
-
+    removeLocationFilter(){
+        if(this.state.check == false){
+            this.setState({textValue: "",
+                           check: true}, () => {this.props.removeLoctionSearch();});
+        }
+    }
 
     render() {
-     
+        let placeholder;
+
+        if(this.state.isText){
+            placeholder = "Find Location name ...";
+        }
+        else
+        {
+            placeholder = "It's not word";
+
+        }
+
         return (
             <div className="field">
                 <input type="text" 
                        value={this.state.textValue} 
                        onChange={this.handleText}
                        onKeyPress={this.enter}
-                       placeholder="Find Location name ..."/>
+                       placeholder={placeholder}/>
                 <div className="button" onClick={this.searchLocation}><p>Search</p></div>
                 <input
                     type="checkbox"
-                    checked={this.state.check}
-                    onChange={this.onClickCheckbox} />            
+                    checked={!this.props.locationSearch}
+                    onClick={this.removeLocationFilter}  />            
             </div>
         );
     }

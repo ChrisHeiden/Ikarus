@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import '../Style/Transition.css';
 import '../Style/App.css';
 import '../Style/InfoVis.css';
+import '../Style/General.css';
 import InfoVis from './InfoVis';
 import Button from './Button';
 import InputBox from './InputBox';
 import InfoBox from './InfoBox';
-import PlattformDot from './PlattformDot';
 
 class Transition extends Component {
-  
   constructor(props) {
     super(props);
     this.state ={
@@ -19,12 +18,21 @@ class Transition extends Component {
       amountFilter: 1000,
       removeOldDatasetValue: 1000,
       removeNewDatasetValue: 0,
-      searchLocation: "",
       twitter: true,
       tumblr: true,
       instagram: true,
+
+      dotRightClick: false,
+
+
+      filterYear: -1,
+      searchLocation: "",
+
+      showAll: true,
+      showAllTime: true,
       showAllLocations: true,
     }; 
+
     this.showInfoBoxFunc = this.showInfoBoxFunc.bind(this);
     this.showInputBoxFunc = this.showInputBoxFunc.bind(this);
     this.getAmount = this.getAmount.bind(this);
@@ -33,7 +41,13 @@ class Transition extends Component {
     this.searchLocationData = this.searchLocationData.bind(this);
     this.lookUpPlattform = this.lookUpPlattform.bind(this);
     this.removeLoctionSearch = this.removeLoctionSearch.bind(this);
+    this.removeTimeSearch = this.removeTimeSearch.bind(this);
     this.getAmountOfDots = this.getAmountOfDots.bind(this);
+    this.searchYear = this.searchYear.bind(this);
+    this.showAllDots = this.showAllDots.bind(this);
+    this.removeSearch = this.removeSearch.bind(this);
+    this.hideDots = this.hideDots.bind(this);
+    this.visbleDots = this.visbleDots.bind(this);
     this.amountTweets = 0;
   }
 
@@ -64,7 +78,8 @@ class Transition extends Component {
 
   searchLocationData(location) {
     this.setState({
-      searchLocation: location
+      searchLocation: location,
+      search: 1
     },() => {});
   } 
 
@@ -82,8 +97,12 @@ class Transition extends Component {
     },() => {});
   }
 
-  removeLoctionSearch(event){
-    this.setState({showAllLocations: event});
+  removeLoctionSearch(){
+    this.setState({searchLocation: ""});
+  }
+
+  removeTimeSearch(){
+    this.setState({filterYear: -1,});
   }
 
   getAmountOfDots(number){
@@ -94,6 +113,27 @@ class Transition extends Component {
     this.forceUpdate();
   }
 
+  searchYear(number){
+    this.setState({ filterYear: number});
+  }
+
+  showAllDots(){
+    this.setState({showAll: true, dotRightClick: false}, () => {})
+  }
+
+   
+  hideDots(value){
+    this.setState({dotRightClick: value, showAll: false}, () => {console.log(this.state.dotRightClick)})
+  }
+
+  removeSearch(){
+    this.removeLoctionSearch();
+    this.removeTimeSearch();
+  }
+
+  visbleDots(){
+
+  }
 
   render() {
 
@@ -101,7 +141,21 @@ class Transition extends Component {
     let showInputField;
 
     if(this.state.showInputField === true){
-      showInputField = <InputBox amountFilter={this.state.amountFilter} removeLoctionSearch={this.removeLoctionSearch} lookUpPlattform ={this.lookUpPlattform} searchLocationData={this.searchLocationData} removeNewDatasets={this.removeNewDatasets} removeOldDatasets={this.removeOldDatasets} getAmount={this.getAmount} amountTw={this.amountTweets}/>;
+      showInputField = <InputBox 
+        showAllDots={this.showAllDots}
+        visbleDots={this.visbleDots}
+        removeSearch={this.removeSearch}
+        hideDots={this.state.dotRightClick}         
+        searchYear={this.searchYear} 
+        amountFilter={this.state.amountFilter} 
+        removeLoctionSearch={this.removeLoctionSearch} 
+        removeTimeSearch={this.removeTimeSearch} 
+        lookUpPlattform ={this.lookUpPlattform} 
+        searchLocationData={this.searchLocationData} 
+        removeNewDatasets={this.removeNewDatasets} 
+        removeOldDatasets={this.removeOldDatasets} 
+        getAmount={this.getAmount} 
+        amountTw={this.amountTweets}/>;
     }
 
     if(this.state.showInfoBox === true){
@@ -122,7 +176,7 @@ class Transition extends Component {
     };
 
     return (
-      <div className="transition generalGrid transitionAnimation">
+      <div className="transition generalGrid transitionAnimation notSelectable">
         <div className="transitionHeader transitionHeaderGridPos">
           <h1>{this.props.title}</h1>
         </div>
@@ -132,14 +186,19 @@ class Transition extends Component {
         </div>
         <div className="mainFocusGridPos mainFocus">
           <InfoVis 
-                  getAmountOfDots={this.getAmountOfDots}
-                  showAllLocations={this.state.showAllLocations}
-                  twitter={this.state.twitter} 
-                  instagram={this.state.instagram}
-                  tumblr={this.state.tumblr}
-                  searchLocation={this.state.searchLocation} 
-                  removeNewDatasetValue={this.state.removeNewDatasetValue} 
-                  removeOldDatasetValue={this.state.removeOldDatasetValue} />
+            hideDots={this.hideDots}
+            
+            showAllDots={this.state.showAll}
+
+            filterYear={this.state.filterYear}
+            getAmountOfDots={this.getAmountOfDots}
+            showAllLocations={this.state.showAllLocations}
+            twitter={this.state.twitter} 
+            instagram={this.state.instagram}
+            tumblr={this.state.tumblr}
+            searchLocation={this.state.searchLocation} 
+            removeNewDatasetValue={this.state.removeNewDatasetValue} 
+            removeOldDatasetValue={this.state.removeOldDatasetValue} />
           <div className="showBoxes">
             {showInfoBox}
             {showInputField}
@@ -149,5 +208,6 @@ class Transition extends Component {
     );
   }
 }
+
 
 export default Transition;

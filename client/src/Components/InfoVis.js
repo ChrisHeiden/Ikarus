@@ -11,37 +11,46 @@ class InfoVis extends Component {
         this.state = {
         };
         this.getAmountOfDots = this.getAmountOfDots.bind(this);
+        this.hideDots = this.hideDots.bind(this);
 
     } 
 
     getAmountOfDots(number){
         this.props.getAmountOfDots(number);
     }
-    
+
+    hideDots(value){
+        this.props.hideDots(value);
+    }
+
 
     render() {
 
         return (
             <div className="infoVisGridPos dotPos gridVis">
-                <MiddleDot 
-                        getAmountOfDots={this.getAmountOfDots}
-                        showAllLocations={this.props.showAllLocations} 
-                        twitter={this.props.twitter} 
-                        instagram={this.props.instagram}
-                        tumblr={this.props.tumblr}
-                        searchLocation={this.props.searchLocation} 
-                        removeNewDatasetValue={this.props.removeNewDatasetValue} 
-                        removeOldDatasetValue={this.props.removeOldDatasetValue} 
-                        alignSelf="center" 
-                        justifySelf="center" 
-                        opacity=".1"/>   
+                <MiddleDot
+                    showAllDots={this.props.showAllDots}
+                    hideDots={this.hideDots}  
+                    filterYear={this.props.filterYear}
+                    getAmountOfDots={this.getAmountOfDots}
+                    showAllLocations={this.props.showAllLocations} 
+                    twitter={this.props.twitter} 
+                    instagram={this.props.instagram}
+                    tumblr={this.props.tumblr}
+                    searchLocation={this.props.searchLocation} 
+                    removeNewDatasetValue={this.props.removeNewDatasetValue} 
+                    removeOldDatasetValue={this.props.removeOldDatasetValue} 
+                    alignSelf="center" 
+                    justifySelf="center" 
+                    opacity=".1"/>   
             </div>
         );
     }
 }
 
 InfoVis.propTypes = {
-    getAmountOfDots: PropTypes.func
+    getAmountOfDots: PropTypes.func,
+    hideDots: PropTypes.func
  }
 
 
