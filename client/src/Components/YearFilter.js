@@ -14,7 +14,6 @@ class YearFilter extends Component {
         this.handleText = this.handleText.bind(this);
         this.filterYear = this.filterYear.bind(this);
         this.regExp = new RegExp('^[0-9]*$');
-        this.onClickCheckbox = this.onClickCheckbox.bind(this);
         this.removeTimeFilter = this.removeTimeFilter.bind(this);
     }     
     
@@ -30,16 +29,7 @@ class YearFilter extends Component {
     }
 
     filterYear(){
-        this.onClickCheckbox();
-        this.setState({ check: false},() => {
-            this.props.searchYear(this.state.textValue)
-        });
-    }
-
-    onClickCheckbox(){
-        if(this.state.check == true){
-            this.setState({check: false}, () =>{});
-        }
+        this.setState({ check: false},() => { this.props.searchYear(this.state.textValue) });
     }
 
     removeTimeFilter(){
