@@ -95,9 +95,6 @@ class InputBox extends Component {
 
     showAllDots(){
         this.setState({locationSearch: false,timeSearch: false},() => {this.props.removeLoctionSearch();this.props.removeTimeSearch();}); 
-
-        //this.removeTimeSearch();
-        //this.removeLoctionSearch();
         this.props.showAllDots(true);
     }
 
@@ -111,7 +108,7 @@ class InputBox extends Component {
                         <h3>Remove oldest Datasets</h3>
                         <Slider removeDatasets={this.removeOldDatasets} step={1} min={0} max={this.props.amountFilter} value={this.props.amountFilter}/>
                         <h3>Remove newest Datasets</h3>
-                        <Slider removeDatasets={this.removeNewDatasets} value={0} step={1} min={0} max={this.props.amountFilter}/>
+                        <Slider removeDatasets={this.removeNewDatasets} step={1} min={0} max={this.props.amountFilter} value={0} />
                     </div>
                    
                     <div className="spacingFilter">
