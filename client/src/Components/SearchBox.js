@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import '../Style/App.css';
-import Transition from './Transition';
-import CheckBox from './CheckBox';
 
 class SearchBox extends Component {
     constructor(props){
