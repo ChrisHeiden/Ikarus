@@ -43,15 +43,7 @@ class TextinputField extends Component {
 
     onClickCheckbox(){
         if(this.state.check == true){
-            this.setState({
-                           check: false}, () => {});
-        }
-    }
-
-    onEnter(event){
-        if (event.keyCode === 13) 
-        {
-            this.onClickCheckbox();
+            this.setState({check: false}, () => {});
         }
     }
 
