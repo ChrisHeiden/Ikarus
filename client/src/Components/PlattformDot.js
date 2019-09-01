@@ -4,7 +4,6 @@ import '../Style/App.css';
 import '../Style/Dot.css';
 import '../Style/PlattformDot.css';
 import PropTypes from 'prop-types';
-const axios = require('axios');
 import Dot from './Dot'
 
 class PlattformDot extends Component {
@@ -88,33 +87,39 @@ class PlattformDot extends Component {
                        this.props.searchLocation.length !== 0)
                     {
                         //console.log(6);
+                        //console.log(this.props.locations[index].length);
+                        //console.log(this.props.locations[index].search(this.props.searchLocation));
+                        //console.log(this.props.locations[index]);
+                        //console.log(this.props.searchLocation);
+                        //console.log(this.props.filterYear);
+                        //console.log(date.getFullYear());
+                        
                         /* filter location + time */
                         if( this.props.locations[index].length !== 0 &&
                             this.props.locations[index].search(this.props.searchLocation) != -1 && 
-                            date.getFullYear() == this.props.filterYear &&
-                            this.props.filterYear == -1)
-                         {
-                             //console.log(2);
-                             dot = <Dot showAllDots={this.props.showAllDots} hideDots={this.hideDots} showAll={false} dotClick={this.dotClick} color={this.props.color} search={true} searchLocation={this.props.searchLocation} key={index} middleX={this.props.middleX} middleY={this.props.middleY} plattformPosX={this.state.x} plattformPosY={this.state.y} location={this.props.locations[index]} date={date} distance={distance} oldest={this.props.allDates[this.props.allDates.length-1]} newest={this.props.allDates[0]} diameter={this.state.diameter}></Dot>      
-                         }
-                         /* filter only location */
-                         else if( this.props.locations[index].length !== 0 &&
-                                  this.props.locations[index].search(this.props.searchLocation) != -1)
-                         {
-                             //console.log(3);
-                             dot = <Dot showAllDots={this.props.showAllDots} hideDots={this.hideDots} search={false} searchLocation={this.props.searchLocation} key={index} middleX={this.props.middleX} middleY={this.props.middleY} plattformPosX={this.state.x} plattformPosY={this.state.y} location={this.props.locations[index]} date={date} distance={distance} oldest={this.props.allDates[this.props.allDates.length-1]} newest={this.props.allDates[0]} diameter={this.state.diameter}></Dot>
-                         }
+                            this.props.filterYear != -1 && 
+                            date.getFullYear() == this.props.filterYear)
+                        {
+                            dot = <Dot showAllDots={this.props.showAllDots} hideDots={this.hideDots} showAll={false} dotClick={this.dotClick} color={this.props.color} search={true} searchLocation={this.props.searchLocation} key={index} middleX={this.props.middleX} middleY={this.props.middleY} plattformPosX={this.state.x} plattformPosY={this.state.y} location={this.props.locations[index]} date={date} distance={distance} oldest={this.props.allDates[this.props.allDates.length-1]} newest={this.props.allDates[0]} diameter={this.state.diameter}></Dot>      
+                        }
+                        /* filter only location */
+                        else if( this.props.filterYear == -1 && 
+                                 date.getFullYear() != this.props.filterYear &&
+                                 this.props.locations[index].length != 0 &&
+                                 this.props.locations[index].search(this.props.searchLocation) != -1)
+                        {
+                            dot = <Dot showAllDots={this.props.showAllDots} hideDots={this.hideDots} search={false} searchLocation={this.props.searchLocation} key={index} middleX={this.props.middleX} middleY={this.props.middleY} plattformPosX={this.state.x} plattformPosY={this.state.y} location={this.props.locations[index]} date={date} distance={distance} oldest={this.props.allDates[this.props.allDates.length-1]} newest={this.props.allDates[0]} diameter={this.state.diameter}></Dot>
+                        }
+                        else{}
                     }
                     /* filter only time */
                     else if(this.props.filterYear != -1 && date.getFullYear() == this.props.filterYear)
                     {
-                        //console.log(4);
                         dot = <Dot showAllDots={this.props.showAllDots} hideDots={this.hideDots} showAll={false} dotClick={this.dotClick} color={this.props.color} search={true} searchLocation={this.props.searchLocation} key={index} middleX={this.props.middleX} middleY={this.props.middleY} plattformPosX={this.state.x} plattformPosY={this.state.y} location={this.props.locations[index]} date={date} distance={distance} oldest={this.props.allDates[this.props.allDates.length-1]} newest={this.props.allDates[0]} diameter={this.state.diameter}></Dot>
                     }
                     /* show all */
                     else if(this.props.filterYear == -1 && date.getFullYear() != this.props.filterYear)
                     {
-                        //console.log(5);
                         dot = <Dot showAllDots={this.props.showAllDots} hideDots={this.hideDots} dotClick={this.dotClick} color={this.props.color} search={true} searchLocation={this.props.searchLocation} key={index} middleX={this.props.middleX} middleY={this.props.middleY} plattformPosX={this.state.x} plattformPosY={this.state.y} location={this.props.locations[index]} date={date} distance={distance} oldest={this.props.allDates[this.props.allDates.length-1]} newest={this.props.allDates[0]} diameter={this.state.diameter}></Dot>
                     }           
                     //console.log("");
@@ -123,6 +128,7 @@ class PlattformDot extends Component {
                 return dot;
             }  
         )
+        //console.log("__________________________________");
         return listItems
     }
 
