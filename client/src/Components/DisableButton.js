@@ -25,7 +25,7 @@ class Button extends Component {
               
         }
         else{
-            console.log("right click noticed")
+            //console.log("right click noticed or this.props.timeSearched != false or this.props.locationSearched != false")
             style = {background: 'red',cursor: 'pointer'}
             button = <div style={style} onClick={this.onClick} className="enableButton"> <h3>show all Dots</h3></div>   
         }    
