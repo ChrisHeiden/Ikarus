@@ -60,7 +60,7 @@ class Transition extends Component {
     if(this.state.buttonInputLabel == ">") {
       this.setState({ buttonInputLabel: "<" },() => {})
     }else{
-      this.setState({ buttonInputLabel: ">" },() => {})
+      this.setState({ buttonInputLabel: ">", searchLocation: "", filterYear: -1, tumblr: true, twitter: true, instagram: true, removeOldDatasetValue: 1000, removeNewDatasetValue: 0,},() => {})
     }
   }
 
@@ -110,7 +110,6 @@ class Transition extends Component {
       amountFilter: number,
       removeOldDatasetValue: number
     })
-    this.forceUpdate();
   }
 
   searchYear(number){
@@ -123,7 +122,7 @@ class Transition extends Component {
 
    
   hideDots(value){
-    this.setState({dotRightClick: value, showAll: false}, () => {console.log(this.state.dotRightClick)})
+    this.setState({dotRightClick: value, showAll: false}, () => {})
   }
 
   removeSearch(){
