@@ -115,8 +115,7 @@ class Dot extends Component {
     }
 
     onClick(){
-      this.setState({hover: true},() => {});
-      this.props.dotClick(this.props.date);
+      this.setState({hover: true},() => {this.props.dotClick(this.props.date);}); 
     }
 
     rightClick(event){
