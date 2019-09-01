@@ -13,13 +13,6 @@ class InputBox extends Component {
         };
         this.handleSlider = this.handleSlider.bind(this);
     } 
-/*
-    componentDidUpdate(prevProps, prevState) {
-        console.log(
-          this.state.sliderValue
-        );
-    }
-*/
     componentWillMount() {
         this.setState({sliderValue: this.props.value},() => {});
     }
