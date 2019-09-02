@@ -11,7 +11,7 @@ Project Icarus is a web application that visualizes Twitter, Tumblr and Flickr c
   - shrink the dataset by removing the newest and oldest datasets
   - remove one item by right click
   - get extra information by hovering and left click
-  - rearrange the dataset
+  - rearrange the dataset by year
   - chose a specific tag you wanna lookup
 All items have a specific opacity that is dependent on the timestamp.
 If you rearrange the dataset you can't use the filters; however, it gives you an overview of how often this specific tag has been used in a post in a year. The diameter of an item gives a hint about how often it has been used.
