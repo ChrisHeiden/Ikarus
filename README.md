@@ -49,5 +49,7 @@ $ npm start
 
 Start the web application by open a browser and open
 ```url
-$ localhost:3000
+$ http://localhost:3000
 ```
+
+If you use Chrome, you get the best outcome. However, it depends on the resolution of the desktop. Unfortunately, the webpage isn't responsive yet.
