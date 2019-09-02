@@ -1,5 +1,5 @@
-# Project Icarus
-![alt text](./server/public/images/logo.png)
+# Project Icarus ![alt text](./server/public/images/logo.png)
+
 
 Project Icarus is a web application that visualizes Twitter, Tumblr and Flickr content on the page. 
 
