@@ -29,6 +29,7 @@ class MiddleDot extends Component {
         };
         this.dotClick = this.dotClick.bind(this); 
         this.hideDots = this.hideDots.bind(this);
+        this.sortbyTime = this.sortbyTime.bind(this);
     }
 
     refCallback = element => {
@@ -57,6 +58,7 @@ class MiddleDot extends Component {
                 for(let x = 0; x < size; ++x)
                 {
                     twitterDates.push(new Date(tweet[x].user.created_at));
+                    this.sortbyTime(twitterDates);
                     twitterLocations.push(tweet[x].user.location);
                 }    
             }); 
@@ -69,6 +71,7 @@ class MiddleDot extends Component {
                 for(let x = 0; x <size; ++x)
                 {
                     tumblrDates.push(new Date(tumb[x].date));
+                    this.sortbyTime(tumblrDates);
                     tumblrLocations.push(tumb[x].location);
                 }
             });  
@@ -89,13 +92,14 @@ class MiddleDot extends Component {
         for(let x = 0; x < size; ++x)
         {
             flickrDates.push(new Date(date[x].photo.dates.taken));
+            this.sortbyTime(flickrDates);
             flickrLocations.push(date[x].photo.owner.location);
         }   
-      
+
         /*Combine all datasets*/
         var flickrTwitter = flickrDates.concat(twitterDates); 
         var allDate = flickrTwitter.concat(tumblrDates); 
-        allDate.sort((a,b) => { return b.getTime() - a.getTime();});
+        this.sortbyTime(allDate);
 
         this.setState({
             twitterDates: twitterDates,
@@ -114,6 +118,10 @@ class MiddleDot extends Component {
         
         //this.forceUpdate();
     };
+
+    sortbyTime(array){
+        array.sort((a,b) => { return b.getTime() - a.getTime();});
+    }
 
     dotClick(clickedDate){
         this.setState({timeSearch: clickedDate},() => {});
@@ -156,6 +164,7 @@ class MiddleDot extends Component {
                 <div ref={this.refCallback} className="plattformDot" style={styles}></div>
               
                 <PlattformDot 
+                    showDistribution={this.props.showDistribution}
                     hideDots={this.hideDots} 
                     showAllDots={this.props.showAllDots}
                     filterYear={this.props.filterYear}
@@ -179,6 +188,7 @@ class MiddleDot extends Component {
                     />
 
                 <PlattformDot 
+                    showDistribution={this.props.showDistribution}
                     hideDots={this.hideDots} 
                     showAllDots={this.props.showAllDots}
                     filterYear={this.props.filterYear}
@@ -202,6 +212,7 @@ class MiddleDot extends Component {
                     />
 
                 <PlattformDot 
+                    showDistribution={this.props.showDistribution}
                     hideDots={this.hideDots} 
                     showAllDots={this.props.showAllDots}
                     filterYear={this.props.filterYear}
