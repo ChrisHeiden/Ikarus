@@ -34,12 +34,12 @@ class Dot extends Component {
       
       if(middleX == plattformPosX)
       {
-        const startX = middleX + (diameter/2) - (this.state.width/2);
+        const startX = middleX + (diameter/2) - (this.props.width/2);
         x = ((-procent /100)* distance.x) + startX;      
       }
       else
       {
-        const startX = middleX + (diameter/2) - (this.state.width/2);
+        const startX = middleX + (diameter/2) - (this.props.width/2);
         x = ((-procent /100) * distance.x) + startX;  
       }
       return x;
@@ -49,12 +49,12 @@ class Dot extends Component {
       let y = 0;
       if(middleY == plattformPosY)
       {
-        const startY = middleY + (diameter/2) - (this.state.width/2);
+        const startY = middleY + (diameter/2) - (this.props.height/2);
         y = ((-procent /100)* distance.y) + startY;       
       }
       else
       {
-        const startY = middleY + (diameter/2) - (this.state.width/2);
+        const startY = middleY + (diameter/2) - (this.props.height/2);
         y = ((-procent /100)* distance.y) + startY;  
       }
 
@@ -145,8 +145,10 @@ class Dot extends Component {
                                       this.props.date,
                                       this.props.diameter)
         let stylesDot;
-        if(this.state.hover === true ){ //|| this.props.search===true
+        if(this.state.hover === true ){
           stylesDot = {
+            width: this.props.width,
+            height: this.props.height,
             top: point.y,
             left: point.x,
             background: 'white',
@@ -155,6 +157,8 @@ class Dot extends Component {
         }
         else{
           stylesDot = {
+            width: this.props.width,
+            height: this.props.height,
             top: point.y,
             left: point.x,
             background: this.initColor,
@@ -176,8 +180,8 @@ class Dot extends Component {
         
 
         let stylesText = {
-          top: point.y - 15,
-          left: point.x + 35,
+          top: point.y - this.props.diameter/2,
+          left: point.x + this.props.diameter + this.props.diameter/2,
         };
 
         let info;
@@ -186,25 +190,38 @@ class Dot extends Component {
         {
           info = <div className="showInfos"><p>{this.props.location}</p><p>{this.props.date.toString()}</p></div>
         }
-    
-        
-        return (
-          <div>
-            <div 
-                onClick={this.click}
-                onMouseDown={this.rightClick}
-                onMouseEnter={this.hoverOver}
-                onMouseLeave={this.hoverOff} 
-                className="absoluteDot" 
-                style={stylesDot}>
+
+        if(this.props.showDistribution == true)
+        {
+          return (
+            <div>
+              <div 
+                  className="absoluteDot" 
+                  style={stylesDot}>
+              </div>
             </div>
-            <div 
-              style={stylesText}
-              className="hoverInformation">
-              {info}
+          );
+        }
+        else
+        {
+          return (
+            <div>
+              <div 
+                  onClick={this.click}
+                  onMouseDown={this.rightClick}
+                  onMouseEnter={this.hoverOver}
+                  onMouseLeave={this.hoverOff} 
+                  className="absoluteDot" 
+                  style={stylesDot}>
+              </div>
+              <div 
+                style={stylesText}
+                className="hoverInformation">
+                {info}
+              </div>
             </div>
-          </div>
-      );
+          );
+        }
     }
   }
 }
