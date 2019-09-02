@@ -16,12 +16,12 @@ class Button extends Component {
 
 
     showBox(){
-        if(this.state.showBox === false)
+        if(this.props.clickState === false)
         {
-            this.setState({ showBox: true },() => { this.props.click(this.state.showBox); })
+            this.props.click(true);
         }
         else{
-            this.setState({ showBox: false },() => { this.props.click(this.state.showBox); })
+           this.props.click(false)
         }
         
     }

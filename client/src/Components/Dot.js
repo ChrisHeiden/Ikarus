@@ -165,24 +165,26 @@ class Dot extends Component {
             opacity: (point.procent / 100)
           };
         }
-
+        let stylesText = {
+          top: point.y - this.props.diameter/2,
+          left: point.x + this.props.diameter + this.props.diameter/2,
+        };
         //console.log(this.props.date.toString() + ": " + this.props.showAll)
         //console.log(this.props.date.toString() + ": " + this.state.visible)
         if(this.state.visible == false && this.props.showAllDots == false)   
         {
           const pair = {display: 'none'};
           stylesDot = {...stylesDot, ...pair};
+          stylesText = {...stylesText, ...pair};
         }
         else{
           const pair = {display: 'block'};
           stylesDot = {...stylesDot, ...pair};
+          stylesText = {...stylesText, ...pair};
         }
         
 
-        let stylesText = {
-          top: point.y - this.props.diameter/2,
-          left: point.x + this.props.diameter + this.props.diameter/2,
-        };
+        
 
         let info;
 

@@ -55,11 +55,22 @@ class Transition extends Component {
   }
 
   showInfoBoxFunc(info){
-    this.setState({ showInfoBox: info },() => {})
+    if(this.state.showInputField === true){
+      this.setState({ showInputField: false },() => {this.setState({ showInfoBox: info,buttonInputLabel: ">", searchLocation: "", filterYear: -1, tumblr: true, twitter: true, instagram: true, removeOldDatasetValue: 1000, removeNewDatasetValue: 0, },() => {})})
+    }
+    else{
+      this.setState({ showInfoBox: info },() => {});
+    }
   }
 
   showInputBoxFunc(info){
-    this.setState({ showInputField: info },() => {});
+    if(this.state.showInfoBox === true)
+    {
+      this.setState({ showInfoBox: false },() => {this.setState({ showInputField: info },() => {})})
+    }
+    else{
+      this.setState({ showInputField: info },() => {})
+    }
     if(this.state.buttonInputLabel == ">") {
       this.setState({ buttonInputLabel: "<" },() => {})
     }else{
@@ -188,8 +199,8 @@ class Transition extends Component {
           <h1>{this.props.title}</h1>
         </div>
         <div className="buttonLayout buttonGridPos">
-          <Button content="i" click={this.showInfoBoxFunc} styleButton={infoStyle}/>
-          <Button content={this.state.buttonInputLabel} click={this.showInputBoxFunc} styleButton={inputStyle}/>
+          <Button content="i" click={this.showInfoBoxFunc} styleButton={infoStyle} clickState={this.state.showInfoBox}/>
+          <Button content={this.state.buttonInputLabel} click={this.showInputBoxFunc} styleButton={inputStyle} clickState={this.state.showInputField}/>
         </div>
         <div className="mainFocusGridPos mainFocus">
           <InfoVis 
