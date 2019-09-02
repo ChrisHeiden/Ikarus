@@ -48,7 +48,7 @@ class App extends Component {
     }
 
     return (
-        <div className="generalGrid notSelectable" onContextMenu={(e)=>  {e.preventDefault(); return false;}}>
+        <div className="generalGrid notSelectable hidingOverflow" onContextMenu={(e)=>  {e.preventDefault(); return false;}}>
           <div style={animation} className={"titleGridPos titleFlexLayout"} >
             <h1 className="climate">Projection</h1>
             <h1 className="change"><span/>Icarus</h1>
