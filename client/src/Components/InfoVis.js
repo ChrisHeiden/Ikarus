@@ -29,6 +29,7 @@ class InfoVis extends Component {
         return (
             <div className="infoVisGridPos dotPos gridVis">
                 <MiddleDot
+                    showDistribution={this.props.showDistribution}
                     showAllDots={this.props.showAllDots}
                     hideDots={this.hideDots}  
                     filterYear={this.props.filterYear}

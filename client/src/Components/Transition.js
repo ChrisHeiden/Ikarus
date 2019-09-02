@@ -31,6 +31,8 @@ class Transition extends Component {
       showAll: true,
       showAllTime: true,
       showAllLocations: true,
+
+      distribution: false,
     }; 
 
     this.showInfoBoxFunc = this.showInfoBoxFunc.bind(this);
@@ -48,6 +50,7 @@ class Transition extends Component {
     this.removeSearch = this.removeSearch.bind(this);
     this.hideDots = this.hideDots.bind(this);
     this.visbleDots = this.visbleDots.bind(this);
+    this.showDistribution = this.showDistribution.bind(this);
     this.amountTweets = 0;
   }
 
@@ -130,6 +133,10 @@ class Transition extends Component {
     this.removeTimeSearch();
   }
 
+  showDistribution(show){
+    this.setState({distribution: show}, () => {})
+  }
+
   visbleDots(){
 
   }
@@ -141,6 +148,7 @@ class Transition extends Component {
 
     if(this.state.showInputField === true){
       showInputField = <InputBox 
+        showDistribution ={this.showDistribution}
         showAllDots={this.showAllDots}
         visbleDots={this.visbleDots}
         removeSearch={this.removeSearch}
@@ -186,7 +194,7 @@ class Transition extends Component {
         <div className="mainFocusGridPos mainFocus">
           <InfoVis 
             hideDots={this.hideDots}
-            
+            showDistribution={this.state.distribution}
             showAllDots={this.state.showAll}
 
             filterYear={this.state.filterYear}

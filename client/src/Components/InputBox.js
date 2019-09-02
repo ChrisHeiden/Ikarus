@@ -17,6 +17,9 @@ class InputBox extends Component {
             tumblr: true,
             instagram: true,
 
+
+            distribution: false,
+
             timeSearch: false,
             locationSearch: false,
         };        
@@ -39,6 +42,19 @@ class InputBox extends Component {
     }
 
     isChecked(plattform){
+
+        if(plattform == "Distribution")
+        {
+            if(this.state.distribution == false)
+            {
+                this.setState({distribution: true},() => { this.props.showDistribution(this.state.distribution)});
+            }
+            else
+            {
+                this.setState({distribution: false},() => { this.props.showDistribution(this.state.distribution)});
+            }
+        }
+
         if(plattform == "Tumblr")
         {
             if(this.state.tumblr == false)
@@ -122,6 +138,7 @@ class InputBox extends Component {
                             <CheckBox initCheck={this.state.twitter} isChecked={this.isChecked} title={"Twitter"}/>
                             <CheckBox initCheck={this.state.tumblr} isChecked={this.isChecked} title={"Tumblr"}/>
                             <CheckBox initCheck={this.state.instagram} isChecked={this.isChecked} title={"Flickr"}/>
+                            <CheckBox initCheck={this.state.distribution} isChecked={this.isChecked} title={"Distribution per year"}/>
                         </div>
                     </div>
 
@@ -135,6 +152,7 @@ class InputBox extends Component {
                                 showAllDots={this.showAllDots} 
                                 timeSearched={this.state.timeSearch}
                                 locationSearched={this.state.locationSearch}/>
+
                     </div>
 
                 </div>
@@ -150,7 +168,8 @@ InputBox.propTypes = {
     removeTimeSearch: PropTypes.func,
     showAllDots: PropTypes.func,
     removeSearch: PropTypes.func,
-    visbleDots: PropTypes.func
+    visbleDots: PropTypes.func,
+    showDistribution: PropTypes.func,
  }
 
  export default InputBox;
