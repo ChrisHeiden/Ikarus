@@ -138,7 +138,7 @@ class InputBox extends Component {
                             <CheckBox initCheck={this.state.twitter} isChecked={this.isChecked} title={"Twitter"}/>
                             <CheckBox initCheck={this.state.tumblr} isChecked={this.isChecked} title={"Tumblr"}/>
                             <CheckBox initCheck={this.state.instagram} isChecked={this.isChecked} title={"Flickr"}/>
-                            <CheckBox initCheck={this.state.distribution} isChecked={this.isChecked} title={"Distribution per year"}/>
+                            <CheckBox initCheck={this.state.distribution} isChecked={this.isChecked} title={"Distribution"}/>
                         </div>
                     </div>
 
