@@ -5,7 +5,6 @@ import '../Style/Transition.css';
 import '../Style/App.css';
 import '../Style/Dot.css';
 import PlattformDot from './PlattformDot'
-const axios = require('axios');
 
 class MiddleDot extends Component {
     constructor(props){
@@ -47,54 +46,41 @@ class MiddleDot extends Component {
         let tumblrLocations = [];
         let flickrLocations = [];
 
-        let date = [];
-
         /********TWITTER**********/
-        fetch('/twitter')
-            .then(res => res.json())
-            .then(tweet => {
-                let size = tweet.length;
+        let response = await fetch('/twitter');
+        let twitterData = await response.json()
+        let size = twitterData.length;
+        for(let x = 0; x < size; ++x)
+        {
+            twitterDates.push(new Date(twitterData[x].user.created_at));
+            twitterLocations.push(twitterData[x].user.location);
+        }    
 
-                for(let x = 0; x < size; ++x)
-                {
-                    twitterDates.push(new Date(tweet[x].user.created_at));
-                    this.sortbyTime(twitterDates);
-                    twitterLocations.push(tweet[x].user.location);
-                }    
-            }); 
 
         /********TUMBLR**********/
-        fetch('/tumblr')
-            .then(res => res.json())
-            .then(tumb => {
-                let size = tumb.length;
-                for(let x = 0; x <size; ++x)
-                {
-                    tumblrDates.push(new Date(tumb[x].date));
-                    this.sortbyTime(tumblrDates);
-                    tumblrLocations.push(tumb[x].location);
-                }
-            });  
+        response = await fetch('/tumblr');
+        let tumblrData = await response.json()
+        size = tumblrData.length;
+        for(let x = 0; x <size; ++x)
+        {
+            tumblrDates.push(new Date(tumblrData[x].date));
+            tumblrLocations.push(tumblrData[x].location);
+        }
 
 
         /********FLICKR**********/
-        const response = await fetch('/flickr')
-        const flickrSet = await response.json();
-        for(let i = 0; i < flickrSet.length; ++i)
-        {
-           await axios.get(' https://www.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=061fec8f4fe3345cb146b8b6c0f85608&photo_id=' + flickrSet[i].id + '&format=json&nojsoncallback=1')
-            .then((response) => {
-                date.push(response.data);
-            })
-        }
-
-        let size = flickrSet.length;
+        response = await fetch('/flickr');
+        let flickrData = await response.json()
+        size = flickrData.length;
         for(let x = 0; x < size; ++x)
         {
-            flickrDates.push(new Date(date[x].photo.dates.taken));
-            this.sortbyTime(flickrDates);
-            flickrLocations.push(date[x].photo.owner.location);
+            flickrDates.push(new Date(flickrData[x].photo.dates.taken));
+            flickrLocations.push(flickrData[x].photo.owner.location);
         }   
+        this.sortbyTime(flickrDates);
+        this.sortbyTime(tumblrDates);
+        this.sortbyTime(twitterDates);
+
 
         /*Combine all datasets*/
         var flickrTwitter = flickrDates.concat(twitterDates); 

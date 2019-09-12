@@ -2,15 +2,14 @@ var express = require('express');
 var router = express.Router();
 
 var Twit = require('twit');
-var config = require('./config');
-var Data =  require('../routes/data')
-var tagData = new Data();
-
+var TagData =  require('./searchTag')
+var data =  require('./plattformData')
+var tagData = new TagData();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 
-  var T = new Twit(config);
+  var T = new Twit(data.twitter);
 
   var param = 
   {
