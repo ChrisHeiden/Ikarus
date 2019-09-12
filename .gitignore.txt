@@ -1,4 +1,4 @@
 # Don't track content of these folders
 client/node_modules
 server/node_modules
-server/routes/plattformData.js
+*.plattformData.js
