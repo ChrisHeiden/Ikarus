@@ -6,7 +6,6 @@ module.exports = function() {
     },
 
     this.setTag = (newtag) =>{
-        //console.log(newtag)
         this.tag = newtag;
     }  
 }

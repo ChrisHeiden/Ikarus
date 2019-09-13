@@ -50,7 +50,7 @@ class App extends Component {
     return (
         <div className="generalGrid notSelectable hidingOverflow" onContextMenu={(e)=>  {e.preventDefault(); return false;}}>
           <div style={animation} className={"titleGridPos titleFlexLayout"} >
-            <h1 className="climate">Projection</h1>
+            <h1 className="climate">Project</h1>
             <h1 className="change"><span/>Icarus</h1>
             <div className="tagBox tagPoxGridPos tagGrid">
               <h1 className="tagSearchTitle">Search a Tag</h1>
