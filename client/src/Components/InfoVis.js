@@ -43,7 +43,7 @@ class InfoVis extends Component {
                     removeOldDatasetValue={this.props.removeOldDatasetValue} 
                     alignSelf="center" 
                     justifySelf="center" 
-                    opacity=".1"/>   
+                    opacity="1"/>   
             </div>
         );
     }

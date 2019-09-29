@@ -12,7 +12,7 @@ class MiddleDot extends Component {
         this.state = {
            x: 0,
            y: 0,
-           diameter: 50,
+           diameter: 1,
            dates: [],
 
            twitterLocations: [],
@@ -33,8 +33,7 @@ class MiddleDot extends Component {
 
     refCallback = element => {
         const pos = element.getBoundingClientRect();
-        this.setState({x: pos.x},() => {});            
-        this.setState({y: pos.y},() => {});
+        this.setState({x: pos.x, y: pos.y},() => {});                
     }
 
     async componentDidMount() {
@@ -101,8 +100,6 @@ class MiddleDot extends Component {
         }, () =>{
             this.props.getAmountOfDots(this.state.dates.length);
         });
-        
-        //this.forceUpdate();
     };
 
     sortbyTime(array){
@@ -117,7 +114,6 @@ class MiddleDot extends Component {
     hideDots(value){
         this.props.hideDots(value)
     }
-
 
     render() { 
         var opacityTwitter;       
@@ -136,19 +132,16 @@ class MiddleDot extends Component {
         if(this.props.tumblr == true){ opacityTumblr = 1; }
         else{ opacityTumblr = 0; }
 
-        if(this.props.twitter == true)
-        { opacityTwitter = 1; }
+        if(this.props.twitter == true){ opacityTwitter = 1; }
         else { opacityTwitter = 0;}
 
-        if(this.props.instagram ==  true)
-        { opacityInstagram = 1;}
+        if(this.props.instagram ==  true){ opacityInstagram = 1;}
         else { opacityInstagram = 0;}
     
-
         return (
             <div className="infoVisGridPos dotPos gridVis">
                 <div ref={this.refCallback} className="plattformDot" style={styles}></div>
-              
+
                 <PlattformDot 
                     showDistribution={this.props.showDistribution}
                     hideDots={this.hideDots} 

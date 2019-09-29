@@ -34,12 +34,12 @@ class Dot extends Component {
       
       if(middleX == plattformPosX)
       {
-        const startX = middleX + (diameter/2) - (this.props.width/2);
+        const startX = middleX + ((diameter - this.props.width)/2);
         x = ((-procent /100)* distance.x) + startX;      
       }
       else
       {
-        const startX = middleX + (diameter/2) - (this.props.width/2);
+        const startX = middleX + ((diameter - this.props.width)/2);
         x = ((-procent /100) * distance.x) + startX;  
       }
       return x;
@@ -49,12 +49,12 @@ class Dot extends Component {
       let y = 0;
       if(middleY == plattformPosY)
       {
-        const startY = middleY + (diameter/2) - (this.props.height/2);
+        const startY = middleY + ((diameter - this.props.height)/2);
         y = ((-procent /100)* distance.y) + startY;       
       }
       else
       {
-        const startY = middleY + (diameter/2) - (this.props.height/2);
+        const startY = middleY + ((diameter - this.props.height)/2);
         y = ((-procent /100)* distance.y) + startY;  
       }
 

@@ -5,6 +5,7 @@ import '../Style/Dot.css';
 import '../Style/PlattformDot.css';
 import PropTypes from 'prop-types';
 import Dot from './Dot'
+import Line from './Line'
 
 class PlattformDot extends Component {
     constructor(props){
@@ -20,7 +21,6 @@ class PlattformDot extends Component {
         this.calcDots = this.calcDots.bind(this); 
         this.dotClick = this.dotClick.bind(this); 
         this.hideDots = this.hideDots.bind(this); 
-        
         this.time;
     }
 
@@ -28,7 +28,7 @@ class PlattformDot extends Component {
 
     refCallback = element => {
         const pos = element.getBoundingClientRect();
-                 
+        
         this.setState({
             x: pos.x,
             y: pos.y
@@ -158,6 +158,37 @@ class PlattformDot extends Component {
         return listItems
     }
 
+    calcYearLines(distance){
+        const dates = this.props.dates;
+        const allDates = this.props.allDates;
+        var oldYear = dates[0].getFullYear();
+        let listItems = dates.map((date, index) =>
+            {
+                let dot;
+                if(oldYear != date.getFullYear())
+                {
+                    oldYear = date.getFullYear();
+                    dot = <Line width={1} 
+                                height={1} 
+                                color={this.props.color} 
+                                key={index} 
+                                middleX={this.props.middleX} 
+                                middleY={this.props.middleY} 
+                                plattformPosX={this.state.x} 
+                                plattformPosY={this.state.y} 
+                                date={dates[index]} 
+                                distance={distance} 
+                                oldest={this.props.allDates[this.props.allDates.length-1]} 
+                                newest={this.props.allDates[0]} 
+                                year={date.getFullYear() + 1}
+                                diameter={this.state.diameter}></Line>
+                    return dot;
+                }
+            }  
+        )
+        return listItems
+    }
+
     render() {
 
         if(this.props.gotInformation == false)
@@ -198,6 +229,7 @@ class PlattformDot extends Component {
                 <div ref={this.refCallback} className="plattformDot" style={styles}>
                     {click}
                     {this.calcDots(distance)}
+                    {this.calcYearLines(distance)}
                 </div>
             );
         }        
