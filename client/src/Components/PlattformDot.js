@@ -101,25 +101,16 @@ class PlattformDot extends Component {
                     }
                     return dot;
                 }
-                //console.log(this.props.filterYear);
                
                 const allDateIndex = allDates.indexOf(date);
                 if(allDateIndex <= removeOldDatasetValue && allDateIndex >= removeNewDatasetValue)
                 {
-                    //console.log(1);
                     if(this.props.searchLocation !== undefined &&
                        this.props.searchLocation !== null && 
                        this.props.locations[index] !== undefined &&
                        this.props.searchLocation.length !== 0)
                     {
-                        //console.log(6);
-                        //console.log(this.props.locations[index].length);
-                        //console.log(this.props.locations[index].search(this.props.searchLocation));
-                        //console.log(this.props.locations[index]);
-                        //console.log(this.props.searchLocation);
-                        //console.log(this.props.filterYear);
-                        //console.log(date.getFullYear());
-                        
+                     
                         /* filter location + time */
                         if( this.props.locations[index].length !== 0 &&
                             this.props.locations[index].search(this.props.searchLocation) != -1 && 
@@ -148,13 +139,11 @@ class PlattformDot extends Component {
                     {
                         dot = <Dot width={10} height={10} showAllDots={this.props.showAllDots} hideDots={this.hideDots} dotClick={this.dotClick} color={this.props.color} search={true} searchLocation={this.props.searchLocation} key={index} middleX={this.props.middleX} middleY={this.props.middleY} plattformPosX={this.state.x} plattformPosY={this.state.y} location={this.props.locations[index]} date={date} distance={distance} oldest={this.props.allDates[this.props.allDates.length-1]} newest={this.props.allDates[0]} diameter={this.state.diameter}></Dot>
                     }           
-                    //console.log("");
                 }
                
                 return dot;
             }  
         )
-        //console.log("__________________________________");
         return listItems
     }
 
@@ -205,7 +194,6 @@ class PlattformDot extends Component {
 
             
             let styles = {
-                //backgroundColor: this.props.color,
                 alignSelf: this.props.alignSelf, 
                 justifySelf: this.props.justifySelf, 
                 opacity: this.props.opacity,
@@ -218,13 +206,11 @@ class PlattformDot extends Component {
             {
                 let textStyle = {
                     position: "relative",
-//                    top: "40px",
                     left:"70px",
                 }
                 click = <p style={textStyle} >{this.props.title}</p>
             }
 
-            //onClick={this.onClick}
             return (
                 <div ref={this.refCallback} className="plattformDot" style={styles}>
                     {click}

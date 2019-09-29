@@ -20,7 +20,6 @@ class TextinputField extends Component {
     componentWillReceiveProps(){
         if(this.state.check == false)
         {
-            //this.setState({check: this.props.locationSearch},() => {});
         }
     }
     

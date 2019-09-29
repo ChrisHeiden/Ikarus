@@ -169,8 +169,6 @@ class Dot extends Component {
           top: point.y - this.props.diameter/2,
           left: point.x + this.props.diameter + this.props.diameter/2,
         };
-        //console.log(this.props.date.toString() + ": " + this.props.showAll)
-        //console.log(this.props.date.toString() + ": " + this.state.visible)
         if(this.state.visible == false && this.props.showAllDots == false)   
         {
           const pair = {display: 'none'};
